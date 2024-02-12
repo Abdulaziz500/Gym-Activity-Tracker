@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Type</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        text-align: center;
+    }
+    h1 {
+        color: #333;
+    }
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        text-transform: uppercase;
+        margin: 10px;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome!</h1>
+    <p>Please choose your role to register:</p>
+    <button class="btn" onclick="navigateTo('trainee')">Trainee</button>
+    <button class="btn" onclick="navigateTo('coach')">Coach</button>
+</div>
+
+<script>
+    function navigateTo(role) {
+        if (role === 'trainee') {
+            window.location.href = 'trainee_register.html';
+        } else if (role === 'coach') {
+            window.location.href = 'coach_register.html';
+        }
+    }
+</script>
+
+</body>
+</html>
