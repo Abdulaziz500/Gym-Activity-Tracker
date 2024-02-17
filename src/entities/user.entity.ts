@@ -6,12 +6,21 @@ export class User extends BaseEntity{
     @PrimaryGeneratedColumn()
     id!:number
 
-    @Column({nullable:false,default:"new user"})
-    name!:string
+    @Column({nullable:false})
+    firstName!:string
 
     @Column({nullable:false})
-    phone!:string
+    lastName!:string
+
+    @Column({nullable:false})
+    username!:string
+
+    @Column({nullable:false})
+    password!:string
 
     @Column({nullable:true})
     email!:string
+
+    @Column({nullable:false})
+    userRole!:string
 }
