@@ -14,6 +14,15 @@ export class Coach extends User {
     @Column({nullable:true})
     certificate!:string
 
+    @Column({nullable:true})
+    gender!:string
+
+    @Column({nullable:true})
+    dateOfBirth!:Date
+
+    @Column({nullable:true})
+    age!:number
+
     @OneToMany(() => Trainee, (trainee) => trainee.coach)
     trainees!: Trainee[];
 
