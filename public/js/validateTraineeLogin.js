@@ -32,9 +32,19 @@ form.addEventListener('submit', function(event) {
         .catch(error => {
             // Handle errors during the Axios request
             console.error('Error:', error);
+            showCustomAlert();
         });
 });
 
+function showCustomAlert() {
+    const alertBox = document.querySelector('.custom-alert');
+    alertBox.style.display = 'block';
+    
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', function() {
+        alertBox.style.display = 'none';
+    });
+}
 
 
 emailInput.addEventListener('input', function() {

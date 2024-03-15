@@ -50,15 +50,24 @@ form.addEventListener('submit', function(event) {
             localStorage.setItem('user', JSON.stringify(response.data.user));
 
             // Redirect the user to the trainee home page
-            window.location.href = '../html/trainee_home.html'; 
+            window.location.href = 'trainee_home.html'; 
         })
         .catch(error => {
             // Handle errors during the Axios request
             console.error('Error:', error);
+            showCustomAlert();
         });
 });
 
-
+function showCustomAlert() {
+    const alertBox = document.querySelector('.custom-alert');
+    alertBox.style.display = 'block';
+    
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', function() {
+        alertBox.style.display = 'none';
+    });
+}
 
 
 firstNameInput.addEventListener('input', function() {

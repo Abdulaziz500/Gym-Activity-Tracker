@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/custom_alert.css">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="div">
+            <img
+                loading="lazy"
+                srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/5835fc9e02f9f419e410a5557f4c0a34b13a1872421902a686de4b07bd21f3bc?apiKey=9502236416344e4c804c4dccd781f6a4&"
+                class="img"
+            />
+            <div class="div-2">
+                <div class="div-3">Gym Activity Tracker</div>
+                    <form id="coachLoginForm">
+                        <div class="div-4">
+                            <div class="div-5">Login</div>
+                            <div class="div-6">
+                                <div class="div-7">Email</div>
+                                <input type="email" id="email" required name="email" value="tt@gmail.com"/>
+                                <span id="emailError" class="input-error-message"></span>
+                                <div class="div-9">Password</div>
+                                <input type="password" id="password" required name="password" value="12345678As!"/>
+                                <span id="passwordError" class="input-error-message"></span>
+                                <div class="div-10">
+                                    <a href="#" class="forgot-password-link">Forgot Password?</a>
+                                </div>                                
+                                <button type="submit" class="div-12">Login</button>
+                                <div class="div-13">
+                                    <div class="div-14">Don’t have an account !</div>
+                                    <div class="div-15">Register</div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class="custom-alert">
+        <span class="close-btn">&times;</span>
+        <p>Login failed. Please try again later.</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="../js/validateTraineeLogin.js"></script>
+    <script>
+        //When user click on register link
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the register link element
+            const registerLink = document.querySelector('.div-15');
+        
+            // Add click event listener to the register link
+            registerLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action of the link
+                
+                // Navigate to the register page
+                window.location.href = './coach_register.html'; // Replace 'register.html' with the actual URL of your register page
+            });
+        });
+    </script>
+    <script>
+        // Handle click event on "Forgot Password" link
+        document.addEventListener('DOMContentLoaded', function() {
+            const forgotPasswordLink = document.querySelector('.forgot-password-link');
+    
+            forgotPasswordLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.location.href = './forgot_password.html'; // Navigate to the forgot password page
+            });
+        });
+    
+        // Handle form submission for password reset
+        document.addEventListener('DOMContentLoaded', function() {
+            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    
+            forgotPasswordForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Add logic to handle form submission for password reset
+                // You can use AJAX (e.g., Axios) to send a request to the server for password reset
+                // Once the request is successful, display a success message or redirect the user to a confirmation page
+            });
+        });
+    </script>              
+</body>
+</html>
