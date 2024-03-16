@@ -54,8 +54,6 @@
         
             // Add click event listener to the register link
             registerLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default action of the link
-                
                 // Navigate to the register page
                 window.location.href = './trainee_register.html'; // Replace 'register.html' with the actual URL of your register page
             });
@@ -69,18 +67,6 @@
             forgotPasswordLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 window.location.href = './forgot_password.html'; // Navigate to the forgot password page
-            });
-        });
-    
-        // Handle form submission for password reset
-        document.addEventListener('DOMContentLoaded', function() {
-            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-    
-            forgotPasswordForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Add logic to handle form submission for password reset
-                // You can use AJAX (e.g., Axios) to send a request to the server for password reset
-                // Once the request is successful, display a success message or redirect the user to a confirmation page
             });
         });
     </script>              

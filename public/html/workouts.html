@@ -1,91 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/workouts.css">
-    <title>Workouts</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workouts</title>
+<link rel="stylesheet" href="../css/workouts.css">
 </head>
 <body>
     <div class="gym-activity-tracker">
+
         <div class="header">
-          <div class="header-content">
-            <div class="logo-container">
-              <div class="logo-wrapper">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e52178c9b114c8f7fa87f2e051fe02f00fe4165c15656d22ec29379c10522133?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Logo" class="logo-image" />
-                <div class="logo-text">Gym Activity Tracker</div>
+            <div class="header-content">
+              <div class="logo-container">
+                <div class="logo-wrapper">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e52178c9b114c8f7fa87f2e051fe02f00fe4165c15656d22ec29379c10522133?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Logo" class="logo-image" />
+                  <div class="logo-text">Gym Activity Tracker</div>
+                </div>
+              </div>
+              <div class="nav-container">
+                <div class="nav-menu">
+                  <button class="nav-item">Home</button>
+                  <button class="nav-item">Workouts</button>
+                  <button class="nav-item">Exercises</button>
+                  <button class="nav-item">Chat</button>
+                  <button class="nav-item">Others</button>
+                </div>
               </div>
             </div>
-            <div class="nav-container">
-              <div class="nav-menu">
-                <button class="nav-item">Home</button>
-                <button class="nav-item">Workouts</button>
-                <button class="nav-item">Exercises</button>
-                <button class="nav-item">Chat</button>
-                <button class="nav-item">Others</button>
-              </div>
-            </div>
-          </div>
         </div>
-        <h1 class="page-title">Start Workout</h1>
-        <h2 class="quick-start-title">Quick Start</h2>
-        <button class="empty-workout-button">Start an Empty Workout</button>
-        <h2 class="templates-title">Templates</h2>
-        <div class="templates-container">
-          <div class="templates-row">
-            <div class="my-templates-container">
-              <div class="my-templates-content">
-                <div class="my-templates-title">My Templates (0)</div>
-                <button class="add-template-button">
-                  Tap to Add <br /> New Template
-                </button>
-                <div class="example-templates-title">Example Templates (4)</div>
-                <button class="example-template-button">Legs</button>
-              </div>
+
+
+        <!-- Start Empty Workout Button -->
+        <button id="start-empty-workout-btn">Start Empty Workout</button>
+
+        <h2 id="saved-workouts-heading">Saved Workouts</h2>
+
+        <!-- Container of Saved Workouts -->
+        <div id="saved-workouts-container">
+        <!-- Sample Workout Card -->
+        <div class="workout-card">
+            <div class="workout-name">Workout 1</div>
+            <div class="workout-info">
+            <!-- Exercise Details -->
+            <div class="exercise-info">3 x Push-ups</div>
+            <div class="exercise-info">5 x Squats</div>
+            <!-- Start Workout Button -->
+            <button class="start-workout-btn">Start Workout</button>
+            <!-- Delete Button -->
+            <button class="delete-workout-btn">Delete</button>
             </div>
-            <div class="example-templates-container">
-              <div class="example-templates-content">
-                <a href="#" class="add-template-link">
-                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/262e3b8d62237b2d5f56fea39f065d07d63a39c1213977310cff4ffeb49206de?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Add Template" class="add-template-icon" />
-                  <span class="add-template-text">Add Template</span>
-                </a>
-                <button class="chest-triceps-button">
-                  Chest and <br /> Triceps
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="templates-row-2">
-          <div class="templates-row-2-content">
-            <div class="back-biceps-container">
-              <button class="back-biceps-button">
-                Back and <br /> Biceps
-              </button>
+        <!-- Repeat for each saved workout -->
+            <!-- Sample Workout Card -->
+            <div class="workout-card">
+                <div class="workout-name">Workout 2</div>
+                <div class="workout-info">
+                <!-- Exercise Details -->
+                <div class="exercise-info">3 x Push-ups</div>
+                <div class="exercise-info">5 x Squats</div>
+                <!-- Start Workout Button -->
+                <button class="start-workout-btn">Start Workout</button>
+                <!-- Delete Button -->
+                <button class="delete-workout-btn">Delete</button>
+                </div>
             </div>
-            <div class="strong-5x5-container">
-              <button class="strong-5x5-button">
-                Strong 5x5 - <br /> Workout A
-              </button>
+                <!-- Sample Workout Card -->
+        <div class="workout-card">
+            <div class="workout-name">Workout 3</div>
+            <div class="workout-info">
+            <!-- Exercise Details -->
+            <div class="exercise-info">3 x Push-ups</div>
+            <div class="exercise-info">5 x Squats</div>
+            <!-- Start Workout Button -->
+            <button class="start-workout-btn">Start Workout</button>
+            <!-- Delete Button -->
+            <button class="delete-workout-btn">Delete</button>
             </div>
-          </div>
         </div>
+        </div>
+
+
+
         <div class="footer">
-          <div class="copyright">
-            <div class="copyright-text">Copyright</div>
-            <div class="copyright-year">
-              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fa482996855a6a1fd2521c97f6ba2114a5592594c94b29a4ad9d524616c9dc3?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Copyright" class="copyright-icon" />
-              <div class="copyright-year-text">2023</div>
+            <div class="copyright">
+              <div class="copyright-text">Copyright</div>
+              <div class="copyright-year">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fa482996855a6a1fd2521c97f6ba2114a5592594c94b29a4ad9d524616c9dc3?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Copyright" class="copyright-icon" />
+                <div class="copyright-year-text">2023</div>
+              </div>
+              <div class="footer-brand">GymActivityTracker</div>
             </div>
-            <div class="footer-brand">GymActivityTracker</div>
-          </div>
-          <div class="footer-links">
-            <div class="footer-link">Home</div>
-            <div class="footer-link">About</div>
-            <div class="footer-link">Contact</div>
-          </div>
+            <div class="footer-links">
+              <div class="footer-link">Home</div>
+              <div class="footer-link">About</div>
+              <div class="footer-link">Contact</div>
+            </div>
         </div>
-      </div>
+
+    </div>
+
+
+    <script src="../js/workouts.js"></script>
 </body>
 </html>

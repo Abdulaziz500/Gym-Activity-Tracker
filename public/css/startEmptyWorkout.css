@@ -197,7 +197,7 @@
   .exercise {
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       margin-bottom: 20px;
       padding: 20px;
   }
@@ -209,7 +209,7 @@
   }
   
   .add-set-btn {
-      background-color: #4CAF50;
+      background-color: #007bff;
       border: none;
       color: white;
       padding: 10px 20px;
@@ -223,20 +223,21 @@
   }
 
   .add-set-btn:hover {
-      background-color: #45a049;
+      background-color: #0069d9;
   }
   .delete-set-btn {
       background-color: #dc3545;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin-bottom: 20px;
-      cursor: pointer;
-      border-radius: 4px;
+      border: none; /* Remove border */
+      color: white; /* White text */
+      padding: 10px 20px; /* Padding */
+      text-align: center; /* Center text */
+      text-decoration: none; /* Remove underline */
+      display: inline-block; /* Display as inline block */
+      font-size: 16px; /* Font size */
+      border-radius: 4px; /* Rounded corners */
+      cursor: pointer; /* Add cursor pointer */
+      transition: background-color 0.3s; /* Smooth transition for background color */
+      margin-right: 5px;
   }
   
   .delete-set-btn:hover {
@@ -261,6 +262,26 @@
   .delete-exercise-btn:hover {
       background-color: #c82333;
   }
+
+  .rest-timer-btn {
+    background-color: #007bff;
+    border: none; /* Remove border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline block */
+    font-size: 16px; /* Font size */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Add cursor pointer */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    margin-right: 5px;
+  }
+
+  .rest-timer-btn:hover {
+      background-color: #0069d9; /* Darker green on hover */
+  }
+
   table {
       width: 100%;
       border-collapse: collapse;
@@ -290,6 +311,10 @@
       height: 20px;
       margin: 0;
       padding: 0;
+  }
+
+  .set-row.done {
+    background-color: #4CAF50; /* Green background */
   }
   
   .action-buttons {
@@ -425,3 +450,82 @@
     .footer-link:hover {
       text-decoration: underline;
     }
+
+
+
+
+
+
+
+/*-----------------------------------------------------*/
+/* Exercise Modal Styles */
+.exercise-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exercise-item {
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.exercise-item:hover {
+  background-color: #f0f0f0;
+}
+/* Exercise Modal Styles */
+/*-----------------------------------------------------*/
+
+
+
+
+/*-----------------------------------------------------*/
+/* Rest timer modal styles*/
+.rest-timer-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2196F3;
+  z-index: 9999;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#rest-timer {
+  font-size: 24px;
+}
+/* Rest timer modal styles*/
+/*-----------------------------------------------------*/
