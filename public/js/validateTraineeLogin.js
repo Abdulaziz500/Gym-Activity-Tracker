@@ -3,48 +3,70 @@ const emailInput = document.getElementById('email');
 const emailError = document.getElementById('emailError');
 const passwordInput = document.getElementById('password');
 const passwordError = document.getElementById('passwordError');
+const submitButton = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+    if(submitButton.disabled){
+        // Prevent form submission
+        event.preventDefault();
+    }else{
+        event.preventDefault(); // Prevent the default form submission behavior
 
-    const formData = new FormData(); // Create FormData object from the form
-    formData.append("email", emailInput.value);
-    formData.append("password", passwordInput.value);
-
-    const url = 'http://localhost:3000/api/v1/auth/login'; // Replace 'your-backend-url' with your actual backend endpoint
-
-    axios.post(url, formData, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            // Handle successful response from the server
-            console.log('Success:', response.data);
-
-            // Store token and user data in local storage
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
-
-            // Redirect the user to the trainee home page
-            window.location.href = '../html/trainee_home.html'; 
+        const formData = new FormData(); // Create FormData object from the form
+        formData.append("email", emailInput.value);
+        formData.append("password", passwordInput.value);
+    
+        const url = 'http://localhost:3000/api/v1/auth/login'; // Replace 'your-backend-url' with your actual backend endpoint
+    
+        axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .catch(error => {
-            // Handle errors during the Axios request
-            console.error('Error:', error);
-            showCustomAlert();
-        });
+            .then(response => {
+                // Handle successful response from the server
+                console.log('Success:', response.data);
+    
+                // Store token and user data in local storage
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+    
+                // Redirect the user to the trainee home page
+                window.location.href = '../html/trainee_home.html'; 
+            })
+            .catch(error => {
+                // Handle errors during the Axios request
+                console.error('Error:', error.response.data.message);
+                let message = error.response.data.message;
+                showCustomAlert(message);
+            });
+
+    }
+
 });
 
-function showCustomAlert() {
-    const alertBox = document.querySelector('.custom-alert');
-    alertBox.style.display = 'block';
-    
-    const closeBtn = document.querySelector('.close-btn');
+function showCustomAlert(message) {
+    // Create a new div element for the alert
+    const alertBox = document.createElement('div');
+    alertBox.className = 'custom-alert';
+
+    // Set the message
+    alertBox.innerHTML = `
+        <span class="close-btn">&times;</span>
+        <p>${message}</p>
+    `;
+
+    // Display the alert
+    document.body.appendChild(alertBox);
+    alertBox.style.display = 'block'; // Show the alert box
+
+    // Close button event listener
+    const closeBtn = alertBox.querySelector('.close-btn');
     closeBtn.addEventListener('click', function() {
         alertBox.style.display = 'none';
     });
 }
+
 
 
 emailInput.addEventListener('input', function() {
@@ -52,8 +74,12 @@ emailInput.addEventListener('input', function() {
     if (errorMessage) {
         emailError.textContent = errorMessage;
         emailError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         emailError.style.display = 'none';
+        // Enable the submit button if there are no validation errors
+        submitButton.disabled = false;
     }
 });
 
@@ -94,8 +120,12 @@ passwordInput.addEventListener('input', function() {
     if (errorMessage) {
         passwordError.textContent = errorMessage;
         passwordError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         passwordError.style.display = 'none';
+        // Enable the submit button if there are no validation errors
+        submitButton.disabled = false;
     }
 });
 

@@ -1,9 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
 import { Coach } from "./coach.entity";
 import { Admin } from "./admin.entity";
+import { Workout } from "./workout.entity";
 
-@Entity("trainees")
+@Entity("trainee")
 export class Trainee extends User {
     @PrimaryGeneratedColumn()
     id!:number
@@ -28,5 +29,8 @@ export class Trainee extends User {
 
     @ManyToOne(() => Admin, (admin) => admin.trainees)
     admin!: Admin;
+
+    @OneToMany(() => Workout, (workouts) => workouts.trainee)
+    workouts!: Workout[]
 
 }

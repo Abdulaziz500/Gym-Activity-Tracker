@@ -18,56 +18,77 @@ const heightInput = document.getElementById('height');
 const heightError = document.getElementById('heightError');
 const dateOfBirthInput = document.getElementById('dateOfBirth');
 const dateOfBirthError = document.getElementById('dateOfBirthError');
+const submitButton = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const formData = new FormData(); // Create FormData object from the form
-    formData.append("firstName", firstNameInput.value);
-    formData.append("lastName", lastNameInput.value);
-    formData.append("username", usernameInput.value);
-    formData.append("password", passwordInput.value);
-    formData.append("email", emailInput.value);
-    formData.append("gender", selectedGender.value);
-    formData.append("weight", weightInput.value);
-    formData.append("height", heightInput.value);
-    formData.append("dateOfBirth", dateOfBirthInput.value);
-
-
-    const url = 'http://localhost:3000/api/v1/auth/register'; // Replace 'your-backend-url' with your actual backend endpoint
-
-    axios.post(url, formData, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            // Handle successful response from the server
-            console.log('Success:', response.data);
-
-            // Store token and user data in local storage
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
-
-            // Redirect the user to the trainee home page
-            window.location.href = 'trainee_home.html'; 
+    // Prevent form submission if the submit button is disabled
+    if (submitButton.disabled) {
+        // Prevent form submission
+        event.preventDefault();
+    }else{
+        event.preventDefault();// Prevent the default behavior of the form submission
+        const formData = new FormData(); // Create FormData object from the form
+        formData.append("firstName", firstNameInput.value);
+        formData.append("lastName", lastNameInput.value);
+        formData.append("username", usernameInput.value);
+        formData.append("password", passwordInput.value);
+        formData.append("email", emailInput.value);
+        formData.append("gender", selectedGender.value);
+        formData.append("weight", weightInput.value);
+        formData.append("height", heightInput.value);
+        formData.append("dateOfBirth", dateOfBirthInput.value);
+    
+    
+        const url = 'http://localhost:3000/api/v1/auth/register'; // Replace 'your-backend-url' with your actual backend endpoint
+    
+        axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .catch(error => {
-            // Handle errors during the Axios request
-            console.error('Error:', error);
-            showCustomAlert();
-        });
+            .then(response => {
+                // Handle successful response from the server
+                console.log('Success:', response.data);
+    
+                // Store token and user data in local storage
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+    
+                // Redirect the user to the trainee home page
+                window.location.href = 'trainee_home.html'; 
+            })
+            .catch(error => {
+                // Handle errors during the Axios request
+                console.error('Error:', error.response.data.message);
+                let message = error.response.data.message;
+                showCustomAlert(message);
+            });
+
+    }
 });
 
-function showCustomAlert() {
-    const alertBox = document.querySelector('.custom-alert');
-    alertBox.style.display = 'block';
-    
-    const closeBtn = document.querySelector('.close-btn');
+function showCustomAlert(message) {
+    // Create a new div element for the alert
+    const alertBox = document.createElement('div');
+    alertBox.className = 'custom-alert';
+
+    // Set the message
+    alertBox.innerHTML = `
+        <span class="close-btn">&times;</span>
+        <p>${message}</p>
+    `;
+
+    // Display the alert
+    document.body.appendChild(alertBox);
+    alertBox.style.display = 'block'; // Show the alert box
+
+    // Close button event listener
+    const closeBtn = alertBox.querySelector('.close-btn');
     closeBtn.addEventListener('click', function() {
         alertBox.style.display = 'none';
     });
 }
+
 
 
 firstNameInput.addEventListener('input', function() {
@@ -75,10 +96,16 @@ firstNameInput.addEventListener('input', function() {
     if (errorMessage) {
         firstNameError.textContent = errorMessage;
         firstNameError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         firstNameError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
+
+
 
 function validateFirstName(firstName) {
     // Check if the first name is not empty
@@ -109,8 +136,12 @@ lastNameInput.addEventListener('input', function() {
     if (errorMessage) {
         lastNameError.textContent = errorMessage;
         lastNameError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         lastNameError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
 
@@ -137,8 +168,12 @@ usernameInput.addEventListener('input', function() {
     if (errorMessage) {
         usernameError.textContent = errorMessage;
         usernameError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         usernameError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
 
@@ -165,8 +200,12 @@ passwordInput.addEventListener('input', function() {
     if (errorMessage) {
         passwordError.textContent = errorMessage;
         passwordError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         passwordError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
 
@@ -205,8 +244,12 @@ confirmPasswordInput.addEventListener('input', function() {
     if (errorMessage) {
         confirmPasswordError.textContent = errorMessage;
         confirmPasswordError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         confirmPasswordError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
 
@@ -229,8 +272,12 @@ emailInput.addEventListener('input', function() {
     if (errorMessage) {
         emailError.textContent = errorMessage;
         emailError.style.display = 'block';
+        // Disable the submit button if there are validation errors
+        submitButton.disabled = true;
     } else {
         emailError.style.display = 'none';
+        // Enable the submit button if input field are valid
+        submitButton.disabled = false;
     }
 });
 

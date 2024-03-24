@@ -3,7 +3,7 @@ import { Coach } from "./coach.entity";
 import { Trainee } from "./trainee.entity";
 import { User } from "./user.entity";
 
-@Entity("admins")
+@Entity("admin")
 export class Admin extends User {
     @PrimaryGeneratedColumn()
     id!:number

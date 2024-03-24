@@ -1,8 +1,4 @@
 import { DataSource } from "typeorm"
-import { Admin } from "../entities/admin.entity"
-import { Coach } from "../entities/coach.entity"
-import { Trainee } from "../entities/trainee.entity"
-import { User } from "../entities/user.entity"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -11,6 +7,6 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "bitrate_zit123",
     database: "gym_activity_tracker",
-    entities:[User,Trainee,Coach,Admin],
+    entities:["src/entities/*.ts"],
     synchronize:true
 })

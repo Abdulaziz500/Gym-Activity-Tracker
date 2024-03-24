@@ -134,11 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to handle adding a new exercise
     function addExercise() {
-        const url = 'https://api.api-ninjas.com/v1/exercises';
+        const url = 'http://localhost:3000/api/v1/exercises/get_exercises';
 
         axios.get(url, {
             headers: {
-                'X-Api-Key': '+FKKTzZrSAqvFlAZf2zddg==9Pu70bnuEer0iXMz',
                 'Content-Type': 'application/json'
             }
         })
