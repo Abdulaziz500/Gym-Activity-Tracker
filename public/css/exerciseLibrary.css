@@ -1,13 +1,12 @@
 * {
     box-sizing: border-box;
 }
-
 body {
-  font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-.gym-activity-tracker {
+  }
+  .gym-activity-tracker {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,89 +138,50 @@ body {
   }
 
 
+
+
+
+
+
+
   
-  #start-empty-workout-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  #start-empty-workout-btn:hover {
-    background-color: #0069d9;
-  }
-  
-  #saved-workouts-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  #saved-workouts-container {
+  .exercise-library {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
-  }
-  
-  .workout-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 12px 27px rgb(0 0 0 / 20%);
+    max-width: 400px; 
     padding: 20px;
-    width: 300px; /* Adjust as needed */
-    margin-bottom: 20px;
   }
   
-  .workout-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .workout-info {
-    margin-top: 10px;
-  }
-  
-  .exercise-info {
-    margin-bottom: 5px;
-  }
-  
-  .start-workout-btn {
-    background-color: #007bff; /* Changed to blue */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+  .exercise-card {
+    width: 100%; /* Take full width of the container */
+    margin-bottom: 20px; /* Add some spacing between cards */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: background-color 0.3s;
   }
   
-  .start-workout-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+  .exercise-card:hover {
+    transform: translateY(-5px);
   }
   
-  .delete-workout-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: background-color 0.3s;
+  .exercise-card img {
+    width: 100%; /* Ensure the image fits within the card */
+    border-radius: 10px;
   }
   
-  .delete-workout-btn:hover {
-    background-color: #c82333;
+  .exercise-card h2 {
+    text-align: center;
+    margin: 15px 0 10px 0;
+    color: #333;
   }
+  
+  
+
+
 
 
 

@@ -251,7 +251,20 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             // Handle errors during the Axios request
-            console.error('Error:', error);
+            console.error('Error during the request:', error);
+            // Display custom alert
+            const customAlert = document.createElement('div');
+            customAlert.classList.add('custom-alert');
+            customAlert.textContent = 'Error during the request';
+            customAlert.style.backgroundColor = "red";
+            customAlert.style.display = "block";
+
+            document.body.appendChild(customAlert);
+
+            // Hide the alert after three seconds
+            setTimeout(() => {
+                customAlert.style.display = 'none';
+            }, 3000);
         });
     }
     
@@ -266,14 +279,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Event listener for "Finish Workout" button
     document.getElementById('finish-workout-btn').addEventListener('click', function() {
-        // Handle finishing workout
-        alert('Workout Finished!');
+        saveWorkoutData();
     });
     
     // Event listener for "Cancel Workout" button
     document.getElementById('cancel-workout-btn').addEventListener('click', function() {
-        // Handle cancelling workout
-        alert('Workout Cancelled!');
+        window.location.href = '../html/workouts.html';
     });
 });
 
@@ -367,3 +378,142 @@ function showCustomAlert() {
         alertBox.style.display = 'none';
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// assemble workout data and send it to back-end when user click on "Finish Workout" button
+
+
+
+// Function to assemble workout data
+function assembleWorkoutData() {
+    // Get workout name from input field
+    const workoutName = document.getElementById('workout-name').value;
+  
+    // Get workout duration from timer
+    const timerValue = document.getElementById('timer').textContent;
+    const durationInSeconds = convertTimeToSeconds(timerValue);
+  
+    // Get user data from local storage
+    const userData = JSON.parse(localStorage.getItem('user'));
+  
+    // Gather exercise data from the DOM
+    const exercises = [];
+    const exerciseElements = document.querySelectorAll('.exercise');
+    exerciseElements.forEach(exerciseElement => {
+      const exerciseName = exerciseElement.querySelector('h2').textContent;
+      const sets = [];
+      const setRows = exerciseElement.querySelectorAll('.set-row');
+      setRows.forEach(setRow => {
+        const setNumber = setRow.querySelector('td:nth-child(1)').textContent;
+        const weight = setRow.querySelector('#weight').value;
+        const reps = setRow.querySelector('#reps').value;
+        const done = setRow.querySelector('input[type="checkbox"]').checked;
+        sets.push({ setNumber, weight, reps, done });
+      });
+      exercises.push({ name: exerciseName, sets });
+    });
+  
+    // Assemble the workout data
+    const workoutData = {
+      name: workoutName,
+      duration: durationInSeconds,
+      user: userData,
+      includes: exercises
+    };
+  
+    return workoutData;
+  }
+  
+  // Function to convert time string (mm:ss) to seconds
+  function convertTimeToSeconds(timeString) {
+    const [minutes, seconds] = timeString.split(':').map(Number);
+    return minutes * 60 + seconds;
+  }
+  
+  // Function to send POST request
+  function saveWorkoutData() {
+    // Assemble workout data
+    const workoutData = assembleWorkoutData();
+
+    // Check if there are exercises, sets, or includes
+    if (workoutData.includes.length === 0) {
+        // Display custom alert
+        const customAlert = document.createElement('div');
+        customAlert.classList.add('custom-alert');
+        customAlert.textContent = 'No exercises found. Cannot save workout.';
+        customAlert.style.backgroundColor = "red";
+        customAlert.style.display = "block";
+
+        document.body.appendChild(customAlert);
+
+        // Hide the alert after three seconds
+        setTimeout(() => {
+            customAlert.style.display = 'none';
+        }, 3000);
+
+        console.error('No exercises found. Cannot save workout.');
+        return; // Prevent sending the request
+    }
+  
+    // Send POST request to backend
+    const url = 'http://localhost:3000/api/v1/workouts/create_workout';
+  
+    axios.post(url, workoutData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+        // Handle success
+        console.log('Workout stored successfully:', response.data);
+        // Display custom alert
+        const customAlert = document.createElement('div');
+        customAlert.classList.add('custom-alert');
+        customAlert.innerHTML = 'Workout stored successfully!<br>Redirecting to previous page...';
+        customAlert.style.backgroundColor = '#04a104'; // Degree of Green color
+        customAlert.style.display = "block"
+
+        document.body.appendChild(customAlert);
+
+        // Hide the alert after three seconds
+        setTimeout(() => {
+            customAlert.style.display = 'none';
+        }, 3000);
+
+        // Redirect user to "workouts" page after three seconds
+        setTimeout(() => {
+            window.location.href = '../html/workouts.html';
+        }, 3000);
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error storing workout:', error);
+        // Display custom alert
+        const customAlert = document.createElement('div');
+        customAlert.classList.add('custom-alert');
+        customAlert.textContent = 'Error storing workout';
+        customAlert.style.backgroundColor = "red";
+        customAlert.style.display = "block";
+
+        document.body.appendChild(customAlert);
+
+        // Hide the alert after three seconds
+        setTimeout(() => {
+            customAlert.style.display = 'none';
+        }, 3000);
+        
+    });
+}  

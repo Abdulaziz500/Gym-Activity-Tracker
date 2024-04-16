@@ -23,3 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../html/recommendedBodyPart.html';
     });
 });
+
+
+
+//When user click on Exercise library Card
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the ExerciseLibraryCard element
+    const ExerciseLibraryCard = document.querySelector('.div-26');
+
+    // Add click event listener to the recommendedExercisesCard
+    ExerciseLibraryCard.addEventListener('click', function(event) {
+        // Navigate to the ExerciseLibrary page
+        window.location.href = '../html/exerciseLibrary.html';
+    });
+});

@@ -9,10 +9,10 @@ export class Sets extends BaseEntity {
     @Column()
     setNumber!: number;
 
-    @Column()
-    weight!: number;
+    @Column({ nullable: true })
+    weight?: number; // Making weight optional by using '?:'
 
-    @Column()
+    @Column({ nullable: false }) // Making reps required by omitting 'nullable' option
     reps!: number;
 
     @Column()

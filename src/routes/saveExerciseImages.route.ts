@@ -37,7 +37,6 @@ function readImagesFromFolder(folderPath: string): string[] {
     }
 }
 
-
 // Function to save images to the database for existing exercises
 export async function saveImagesToDatabase(imagePaths: string[]) {
     try {
@@ -49,7 +48,8 @@ export async function saveImagesToDatabase(imagePaths: string[]) {
 
             // If exercise found, update its image path
             if (exercise) {
-                exercise.imagePath = imagePath;
+                const relativeImagePath = imagePath.replace(/.*?(?=\/public\/)/, ''); // Replace until 'public' folder
+                exercise.imagePath = relativeImagePath;
                 await exercise.save(); // Save the exercise entity with updated image path
                 console.log(`Image saved for exercise "${imageNameWithoutExt}"`);
             } else {

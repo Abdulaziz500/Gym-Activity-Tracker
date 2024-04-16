@@ -44,11 +44,12 @@ export const s_get_exercises = async (req: Request, res: Response) => {
 };
 
 export const s_get_exercise = async (req: Request, res: Response) => {
-    console.log(req.params)
-    const exercise_name: string = req.params.name;
+    console.log(req.params);
+    const exercise_id: string = req.params.id;
+    const id: number = +exercise_id; // Convert string to number using the unary plus operator
 
     try {
-        const exercise = await Exercise.findOne({ where: { name: exercise_name } });
+        const exercise = await Exercise.findOne({ where: { id } }); // Use the converted number as ID
 
         if (!exercise) {
             return res.status(404).json({ message: 'Exercise not found' });
@@ -62,11 +63,12 @@ export const s_get_exercise = async (req: Request, res: Response) => {
 };
 
 export const s_delete_exercise = async (req: Request, res: Response) => {
-    console.log(req.params)
-    const exercise_name: string = req.params.name;
+    console.log(req.params);
+    const exercise_id: string = req.params.id;
+    const id: number = +exercise_id; // Convert string to number using the unary plus operator
 
     try {
-        const exercise = await Exercise.findOne({ where: { name: exercise_name } });
+        const exercise = await Exercise.findOne({ where: { id } });
 
         if (!exercise) {
             return res.status(404).json({ message: 'Exercise not found' });
@@ -84,7 +86,8 @@ export const s_delete_exercise = async (req: Request, res: Response) => {
 export const s_update_exercise = async (req: Request, res: Response) => {
     console.log(req.params)
     console.log(req.body)
-    const exercise_name: any = req.params.name;
+    const exercise_id: string = req.params.id;
+    const id: number = +exercise_id; // Convert string to number using the unary plus operator
     const { name, type, muscle, equipment, difficulty, instructions, imagePath } = req.body;
 
     // Initialize an empty object to hold the fields to update
@@ -118,7 +121,7 @@ export const s_update_exercise = async (req: Request, res: Response) => {
         }
 
         // Perform the update with only the provided fields
-        const updatedExercise = await Exercise.update({ name: exercise_name }, updateFields);
+        const updatedExercise = await Exercise.update({ id }, updateFields);
 
         return res.status(200).json(updatedExercise);
     } catch (error: any) {

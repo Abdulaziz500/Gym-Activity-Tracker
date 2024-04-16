@@ -1,9 +1,8 @@
 * {
     box-sizing: border-box;
 }
-
 body {
-  font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -13,9 +12,9 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #fff;
-  }
+}
 
-  .header {
+.header {
     width: 100%;
     padding: 63px 46px 22px;
     border-bottom: 2px solid rgba(0, 0, 0, 1);
@@ -139,93 +138,60 @@ body {
   }
 
 
-  
-  #start-empty-workout-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  #start-empty-workout-btn:hover {
-    background-color: #0069d9;
-  }
-  
-  #saved-workouts-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  #saved-workouts-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .workout-card {
+
+
+
+
+
+.exercise-details {
+    max-width: 400px;
+    margin: 20px auto;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 12px 27px rgb(0 0 0 / 20%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.exercise-image {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.exercise-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.exercise-info {
     padding: 20px;
-    width: 300px; /* Adjust as needed */
-    margin-bottom: 20px;
-  }
-  
-  .workout-name {
+}
+
+.exercise-info h1 {
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 10px;
-  }
-  
-  .workout-info {
-    margin-top: 10px;
-  }
-  
-  .exercise-info {
-    margin-bottom: 5px;
-  }
-  
-  .start-workout-btn {
-    background-color: #007bff; /* Changed to blue */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .start-workout-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
-  .delete-workout-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .delete-workout-btn:hover {
-    background-color: #c82333;
-  }
+    color: #333;
+}
+
+.exercise-info p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.exercise-info strong {
+    font-weight: bold;
+}
 
 
 
-  .footer {
+
+
+
+
+
+
+.footer {
     display: flex;
     justify-content: space-between;
     align-items: center;

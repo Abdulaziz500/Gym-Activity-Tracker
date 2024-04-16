@@ -8,6 +8,7 @@ import { isAuthenticated } from "./middleware/isAuthenticated";
 import { exercise_route } from "./routes/exercise.route";
 import { fetch_exercises_router } from "./routes/fetchExercises.route";
 import { save_exercise_images_router } from "./routes/saveExerciseImages.route";
+import { workout_route } from "./routes/workout.route";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({extended:true}))
 app.use("/api/v1/auth",auth_route)
 app.use("/api/v1/trainees",isAuthenticated,trainee_route)
 app.use("/api/v1/exercises",exercise_route)
+app.use("/api/v1/workouts",workout_route)
 
 // Use the fetch_exercises_router
 app.use("/api/v1", fetch_exercises_router);
