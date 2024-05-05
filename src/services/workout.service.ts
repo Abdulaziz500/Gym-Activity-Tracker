@@ -5,7 +5,9 @@ import { Sets } from "../entities/sets.entity";
 import { Workout } from "../entities/workout.entity";
 
 export const s_create_workout = async (req: Request, res: Response) => {
+    console.log("begin----req.body-------------------")
     console.log(req.body)
+    console.log("end------req.body-------------------")
   try {
     const { name, user, duration, includes } = req.body;
 
@@ -15,8 +17,8 @@ export const s_create_workout = async (req: Request, res: Response) => {
     workout.duration = duration;
     workout.trainee = user;
 
-    // Save the workout to the database
-    await workout.save();
+    const includesEntries: Includes[] = [];
+    const setsEntries: Sets[] = [];
 
     // Link existing exercises to the workout and save sets
     for (const includedExercise of includes) {
@@ -26,29 +28,77 @@ export const s_create_workout = async (req: Request, res: Response) => {
         const includesEntry = new Includes();
         includesEntry.workout = workout;
         includesEntry.exercise = exercise;
-        await includesEntry.save();
+        includesEntries.push(includesEntry);
+        
 
         // Save sets for the included exercise
         for (const set of includedExercise.sets) {
-            const weight = typeof set.weight === 'number' && !isNaN(set.weight) ? set.weight : null;
-            const reps = typeof set.reps === 'number' && !isNaN(set.reps) ? set.reps : null;
+            // Convert setNumber to integer
+            set.setNumber = parseInt(set.setNumber);
+
+            // Convert weight and reps to integers, or default to 0 if empty string
+            set.weight = set.weight !== '' ? parseInt(set.weight) : 0;
+            set.reps = set.reps !== '' ? parseInt(set.reps) : 0;
             
-            // Exclude sets with done value of zero and reps not null (trainee didn't finish the set)
-            if (set.done !== 0 && reps !== null) {
+            console.log("weight:");
+            console.log(set.weight);
+            console.log("reps:");
+            console.log(set.reps);
+            // Exclude sets with done value of false or reps equal to 0 (trainee didn't finish the set)
+            if (set.done && set.reps > 0 ) {
+                console.log("set begin inside if--------------------------------------")
+                console.log(set)
+                console.log("set end inside if--------------------------------------")
                 const setsEntry = new Sets();
                 setsEntry.includes = includesEntry;
                 setsEntry.setNumber = set.setNumber;
-                setsEntry.weight = weight;
-                setsEntry.reps = reps
+                setsEntry.weight = set.weight;
+                setsEntry.reps = set.reps
                 setsEntry.done = set.done;
-                console.log(setsEntry);
-                await setsEntry.save();
+                console.log("setsEntry begin inside if--------------------------------------")
+                console.log(setsEntry)
+                console.log("setsEntry end inside if--------------------------------------")
+                setsEntries.push(setsEntry);
+            }else{
+                console.log("Set not saved due to invalid data:", set);
             }
+            console.log("setsEntries begin after loops--------------------------------------")
+            console.log(setsEntries)
+            console.log("setsEntries end after loops--------------------------------------")
         }
+
+
       } else {
         console.warn(`Exercise "${includedExercise.name}" not found in the database.`);
       }
+
     }
+
+
+    // Save the workout to the database
+    try {
+        await workout.save();
+    } catch (error) {
+        console.error('Error saving workout:', error);
+        throw error; // Rethrow the error to halt further execution
+    }
+
+    // Save all includes entries
+    try {
+        await Promise.all(includesEntries.map(entry => entry.save()));
+    } catch (error) {
+        console.error('Error saving includes entries:', error);
+        throw error; // Rethrow the error to halt further execution
+    }
+
+    // Save all sets entries
+    try {
+        await Promise.all(setsEntries.map(entry => entry.save()));
+    } catch (error) {
+        console.error('Error saving sets entries:', error);
+        throw error; // Rethrow the error to halt further execution
+    }
+
 
     console.log('Workout created successfully');
     // Respond with success message
@@ -61,7 +111,7 @@ export const s_create_workout = async (req: Request, res: Response) => {
 };
 
 
-/////////////////////////////////////////////////////////////////  todo
+
 
 export const s_get_workouts = async (req: Request, res: Response) => {
     try {
@@ -81,6 +131,7 @@ export const s_get_workouts = async (req: Request, res: Response) => {
                 username: workout.trainee.username,
                 email: workout.trainee.email,
                 dateOfBirth: workout.trainee.dateOfBirth,
+                userRole: workout.trainee.userRole,
                 gender: workout.trainee.gender,
                 age: workout.trainee.age,
                 weight: workout.trainee.weight,
@@ -128,89 +179,179 @@ export const s_get_workouts = async (req: Request, res: Response) => {
     }
 };
 
-export const s_get_workout = async (req: Request, res: Response) => {
-    console.log(req.params);
-    const exercise_id: string = req.params.id;
-    const id: number = +exercise_id; // Convert string to number using the unary plus operator
 
+
+
+export const s_get_trainee_workouts = async (req: Request, res: Response) => {
     try {
-        const exercise = await Workout.findOne({ where: { id } }); // Use the converted number as ID
+        const traineeId = req.params.traineeId; // Assuming the trainee ID is passed as a request parameter
 
-        if (!exercise) {
-            return res.status(404).json({ message: 'Exercise not found' });
-        }
+        const workouts = await Workout.find({
+            where: { trainee: { id: +traineeId } }, // Filter workouts by trainee ID
+            relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+        });
 
-        return res.status(200).json(exercise);
+        // Map the workouts to include the exercise and sets data
+        const mappedWorkouts = workouts.map(workout => ({
+            id: workout.id,
+            name: workout.name,
+            duration: workout.duration,
+            trainee: workout.trainee ? {
+                id: workout.trainee.id,
+                firstName: workout.trainee.firstName,
+                lastName: workout.trainee.lastName,
+                username: workout.trainee.username,
+                email: workout.trainee.email,
+                dateOfBirth: workout.trainee.dateOfBirth,
+                userRole: workout.trainee.userRole,
+                gender: workout.trainee.gender,
+                age: workout.trainee.age,
+                weight: workout.trainee.weight,
+                height: workout.trainee.height,
+            } : null,
+            coach: workout.coach ? {
+                id: workout.coach.id,
+                firstName: workout.coach.firstName,
+                lastName: workout.coach.lastName,
+                username: workout.coach.username,
+                email: workout.coach.email,
+                userRole: workout.coach.userRole,
+                dateOfBirth: workout.coach.dateOfBirth,
+                gender: workout.coach.gender,
+                age: workout.coach.age,
+                yearsOfExperience: workout.coach.yearsOfExperience,
+                certificate: workout.coach.certificate,
+            } : null,
+            includes: workout.includes.map(includes => ({
+                id: includes.id,
+                exercise: includes.exercise ? {
+                    id: includes.exercise.id,
+                    name: includes.exercise.name,
+                    type: includes.exercise.type,
+                    muscle: includes.exercise.muscle,
+                    equipment: includes.exercise.equipment,
+                    difficulty: includes.exercise.difficulty,
+                    instructions: includes.exercise.instructions,
+                    imagePath: includes.exercise.imagePath,
+                    sets: includes.sets.map(set => ({
+                        id: set.id,
+                        setNumber: set.setNumber,
+                        weight: set.weight,
+                        reps: set.reps,
+                        done: set.done,
+                    }))
+                } : null,
+            })),
+        }));
+
+        return res.status(200).json(mappedWorkouts);
     } catch (error) {
-        console.error('Error retrieving exercise:', error);
+        console.error('Error retrieving workouts for trainee:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+
+
+
+
+
+export const s_get_workout = async (req: Request, res: Response) => {
+    try {
+        const workoutId = req.params.id; // Assuming the workout ID is passed as a route parameter
+
+        const workout = await Workout.find({
+            where: { id: +workoutId },
+            relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+        });
+        
+        if (!workout || workout.length === 0) {
+            return res.status(404).json({ error: 'Workout not found' });
+        }
+
+        const mappedWorkout = {
+            id: workout[0].id,
+            name: workout[0].name,
+            duration: workout[0].duration,
+            trainee: workout[0].trainee ? {
+                id: workout[0].trainee.id,
+                firstName: workout[0].trainee.firstName,
+                lastName: workout[0].trainee.lastName,
+                username: workout[0].trainee.username,
+                email: workout[0].trainee.email,
+                dateOfBirth: workout[0].trainee.dateOfBirth,
+                userRole: workout[0].trainee.userRole,
+                gender: workout[0].trainee.gender,
+                age: workout[0].trainee.age,
+                weight: workout[0].trainee.weight,
+                height: workout[0].trainee.height,
+            } : null,
+            coach: workout[0].coach ? {
+                id: workout[0].coach.id,
+                firstName: workout[0].coach.firstName,
+                lastName: workout[0].coach.lastName,
+                username: workout[0].coach.username,
+                email: workout[0].coach.email,
+                userRole: workout[0].coach.userRole,
+                dateOfBirth: workout[0].coach.dateOfBirth,
+                gender: workout[0].coach.gender,
+                age: workout[0].coach.age,
+                yearsOfExperience: workout[0].coach.yearsOfExperience,
+                certificate: workout[0].coach.certificate,
+            } : null,
+            includes: workout[0].includes.map(includes => ({
+                id: includes.id,
+                exercise: includes.exercise ? {
+                    id: includes.exercise.id,
+                    name: includes.exercise.name,
+                    type: includes.exercise.type,
+                    muscle: includes.exercise.muscle,
+                    equipment: includes.exercise.equipment,
+                    difficulty: includes.exercise.difficulty,
+                    instructions: includes.exercise.instructions,
+                    imagePath: includes.exercise.imagePath,
+                    sets: includes.sets.map(set => ({
+                        id: set.id,
+                        setNumber: set.setNumber,
+                        weight: set.weight,
+                        reps: set.reps,
+                        done: set.done,
+                    }))
+                } : null,
+            })),
+        };
+
+        return res.status(200).json(mappedWorkout);
+    } catch (error) {
+        console.error('Error retrieving workout:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
 
 export const s_delete_workout = async (req: Request, res: Response) => {
-    console.log(req.params);
-    const exercise_id: string = req.params.id;
-    const id: number = +exercise_id; // Convert string to number using the unary plus operator
-
     try {
-        const exercise = await Workout.findOne({ where: { id } });
+        const workoutId = req.params.id; // Assuming the workout ID is passed as a route parameter
 
-        if (!exercise) {
-            return res.status(404).json({ message: 'Exercise not found' });
+        // Check if the workout exists
+        const workout = await Workout.find({
+            where: {id: +workoutId},  
+            relations: ['includes'] 
+        });
+
+        if (!workout[0]) {
+            return res.status(404).json({ error: 'Workout not found' });
         }
 
-        await Workout.remove(exercise);
-        
-        return res.status(200).json({ message: 'Exercise deleted' });
+        // Delete the workout and its related entities
+        await workout[0].remove();
+
+        console.log("Workout deleted successfully");
+        return res.status(200).json({ message: 'Workout deleted successfully' });
     } catch (error) {
-        console.error('Error deleting exercise:', error);
+        console.error('Error deleting workout:', error);
         return res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
-export const s_update_workout = async (req: Request, res: Response) => {
-    console.log(req.params)
-    console.log(req.body)
-    const exercise_id: string = req.params.id;
-    const id: number = +exercise_id; // Convert string to number using the unary plus operator
-    const { name, type, muscle, equipment, difficulty, instructions, imagePath } = req.body;
-
-    // Initialize an empty object to hold the fields to update
-    const updateFields: any = {};
-
-    // Check if each field is provided and add it to the update object if it exists
-    if (name) {
-        updateFields.name = name;
-    }
-    if (type) {
-        updateFields.type = type;
-    }
-    if (muscle) {
-        updateFields.muscle = muscle;
-    }
-    if (equipment) {
-        updateFields.equipment = equipment;
-    }
-    if (difficulty) {
-        updateFields.difficulty = difficulty;
-    }
-    if (instructions) {
-        updateFields.instructions = instructions;
-    }
-
-    try {
-        // Check if imagePath is provided and update the image path if it exists
-        if (imagePath) {
-            // Update the image path
-            updateFields.imagePath = imagePath;
-        }
-
-        // Perform the update with only the provided fields
-        const updatedExercise = await Workout.update({ id }, updateFields);
-
-        return res.status(200).json(updatedExercise);
-    } catch (error: any) {
-        console.error('Error updating exercise:', error);
-        return res.status(500).json({ error: error.message }); // Handle error appropriately
     }
 };

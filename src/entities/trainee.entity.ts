@@ -3,6 +3,7 @@ import { User } from "./user.entity";
 import { Coach } from "./coach.entity";
 import { Admin } from "./admin.entity";
 import { Workout } from "./workout.entity";
+import { Recommendations } from "./recommendation.entity";
 
 @Entity("trainee")
 export class Trainee extends User {
@@ -32,5 +33,8 @@ export class Trainee extends User {
 
     @OneToMany(() => Workout, (workouts) => workouts.trainee)
     workouts!: Workout[]
+
+    @OneToMany(() => Recommendations, (recommendations) => recommendations.trainee)
+    recommendations!: Recommendations[]
 
 }

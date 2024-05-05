@@ -120,21 +120,74 @@
         flex-wrap: wrap;
       }
     }
+
+
+
+
+
+
+    
   
-    .nav-item {
+    .nav-item a {
       font-family: Roboto, sans-serif;
       cursor: pointer;
       background: none;
       border: none;
       padding: 0;
       font-size: inherit;
-      color: inherit;
       margin-right: 25px;
+      color: #333; /* Original color */
+      text-decoration: none;
     }
   
-    .nav-item:hover {
-      text-decoration: underline;
+    .nav-item a:hover {
+      color: #555;
     }
+  
+    /* ////////////////////////////////////////////////// */
+  /* (others) link styles */
+  
+  /* Style for the options container */
+  #othersOptions {
+    display: none;
+    position: absolute;
+    top: 90px; /* Adjust this value to position the options dropdown */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 999; /* Ensure dropdown appears on top of other content */
+    margin-top: 30px;
+  }
+  
+  /* Style for each individual option */
+  #othersOptions div {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for options */
+  #othersOptions div:hover {
+    background-color: #f2f2f2;
+  }
+  /* //////////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   .workout-info {
       background-color: #fff;

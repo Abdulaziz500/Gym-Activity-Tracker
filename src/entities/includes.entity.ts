@@ -8,7 +8,7 @@ export class Includes extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @ManyToOne(() => Workout, workout => workout.includes)
+    @ManyToOne(() => Workout, workout => workout.includes, { onDelete: "CASCADE" })
     workout!: Workout;
 
     @ManyToOne(() => Exercise, exercise => exercise.includes)

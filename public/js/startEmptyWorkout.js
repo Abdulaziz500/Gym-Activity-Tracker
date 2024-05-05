@@ -1,4 +1,118 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.size !== 0){
+        getSavedWorkoutData()
+    }
+
+    // get information for the saved workout that user clicked on from 'workouts.html' page
+    function getSavedWorkoutData() {
+        const workoutId = urlParams.get('id');
+        const url = `http://localhost:3000/api/v1/workouts/get_workout/${workoutId}`;
+    
+        axios.get(url)
+            .then(response => {
+                const workout = response.data;
+                console.log(workout);
+    
+                // Populate the form fields with the workout data
+                const workoutNameInput = document.getElementById('workout-name');
+                workoutNameInput.value = workout.name;
+    
+                // Loop through each exercise in the workout
+                workout.includes.forEach(exercise => {
+                    // Create a new exercise container
+                    const newExercise = document.createElement('div');
+                    newExercise.classList.add('exercise');
+                    newExercise.innerHTML = `
+                        <h2>${exercise.exercise.name}</h2>
+                        <button class="add-set-btn">Add Set</button>
+                        <table>
+                            <tr>
+                                <th>Set</th>
+                                <th>Kg</th>
+                                <th>Reps</th>
+                                <th>Done?</th>
+                                <th>Action</th>
+                                <th>Action</th>
+                            </tr>
+                        </table>
+                        <button class="delete-exercise-btn">Delete Exercise</button>
+                    `;
+    
+                    // Loop through each set in the exercise
+                    exercise.exercise.sets.forEach(set => {
+                        // Create a new row for each set
+                        const setRow = document.createElement('tr');
+                        setRow.classList.add('set-row');
+                        setRow.innerHTML = `
+                            <td>${set.setNumber}</td>
+                            <td><input type="number" class="weight" value="${set.weight}"></td>
+                            <td><input type="number" class="reps" value="${set.reps}"></td>
+                            <td><input type="checkbox" ></td>
+                            <td><button class="delete-set-btn">Delete Set</button></td>
+                            <td><button class="rest-timer-btn" onclick="displayRestTimerModal(90)">Rest Timer</button></td>
+                        `;
+    
+                        // Add event listener to checkboxes
+                        const checkbox = setRow.querySelector('input[type="checkbox"]');
+                        checkbox.addEventListener('change', function() {
+                            // Get the corresponding Reps input field
+                            const repsInput = this.closest('.set-row').querySelector('.reps');
+    
+                            // Check if Reps input field has a value
+                            if (repsInput.value.trim() === '') {
+                                // Add red border to Reps input field if it's empty
+                                repsInput.style.border = '1px solid red';
+    
+                                // Set focus to Reps input field
+                                repsInput.focus();
+    
+                                // If Reps input field is empty, prevent checkbox from being checked
+                                this.checked = false;
+                            } else {
+                                // Remove red border from Reps input field if it's not empty
+                                repsInput.style.border = 'inherit';
+    
+                                // Check if checkbox is checked
+                                if (this.checked) {
+                                    // Add class to parent row
+                                    this.closest('.set-row').classList.add('done');
+                                } else {
+                                    // Remove class from parent row
+                                    this.closest('.set-row').classList.remove('done');
+                                }
+                            }
+                        });
+    
+                        // Append the new set row to the table
+                        newExercise.querySelector('table').appendChild(setRow);
+                    });
+    
+                    // Add event listener to the new "Add Set" button
+                    const newAddSetButton = newExercise.querySelector('.add-set-btn');
+                    newAddSetButton.addEventListener('click', addSet);
+    
+                    // Add event listener to the new "Delete Exercise" button
+                    const newDeleteExerciseButton = newExercise.querySelector('.delete-exercise-btn');
+                    newDeleteExerciseButton.addEventListener('click', deleteExercise);
+    
+                    // Insert the new exercise into the exercise container
+                    const exerciseContainer = document.getElementById('exercise-container');
+                    exerciseContainer.appendChild(newExercise);
+                });
+    
+            })
+            .catch(error => {
+                console.error('Error fetching workout data:', error);
+            });
+    }
+    
+
+
+
+
+
     const editWorkoutBtn = document.getElementById('edit-workout-name');
     const workoutNameInput = document.getElementById('workout-name');
 
@@ -184,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <td><input type="number" id="reps"></td>
                                 <td><input type="checkbox"></td>
                                 <td><button class="delete-set-btn">Delete Set</button></td>
-                                <td><button class="rest-timer-btn" onclick="displayRestTimerModal(60)">Rest Timer</button></td>
+                                <td><button class="rest-timer-btn" onclick="displayRestTimerModal(90)">Rest Timer</button></td>
                             </tr>
                         </table>
                         <button class="delete-exercise-btn">Delete Exercise</button>
@@ -231,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const newDeleteExerciseButton = newExercise.querySelector('.delete-exercise-btn');
                     newDeleteExerciseButton.addEventListener('click', deleteExercise);
 
-                    // Insert the new exercise before the "Add Exercise" button
+                    // Insert the new exercise into the exercise container
                     const exerciseContainer = document.getElementById('exercise-container');
                     exerciseContainer.appendChild(newExercise);
 
@@ -516,4 +630,23 @@ function assembleWorkoutData() {
         }, 3000);
         
     });
-}  
+}
+
+
+
+
+
+
+
+
+
+// when user click on (others) link
+document.getElementById('othersLink').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent the default link behavior
+    var othersOptions = document.getElementById('othersOptions');
+    if (othersOptions.style.display === 'none') {
+        othersOptions.style.display = 'block';
+    } else {
+        othersOptions.style.display = 'none';
+    }
+});

@@ -1,4 +1,4 @@
-//When user click on log Workouts Card
+//When user click on set up Workouts Card
 document.addEventListener('DOMContentLoaded', function() {
     // Get the logWorkoutsCard element
     const logWorkoutsCard = document.querySelector('.div-14');
@@ -12,26 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-//When user click on recommended Exercises Card
+//When user click on Communicate with Trainee Card
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the recommendedExercisesCard element
-    const recommendedExercisesCard = document.querySelector('.div-17');
-
-    // Add click event listener to the recommendedExercisesCard
-    recommendedExercisesCard.addEventListener('click', function(event) {
-        // Navigate to the recommendedBodyPart page
-        window.location.href = '../html/recommendedBodyPart.html';
-    });
-});
-
-
-//When user click on Communicate with Coach Card
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the Communicate with Coach Card element
-    const CommunicateWithCoachCard = document.querySelector('.div-20');
+    // Get the Communicate with Trainee Card element
+    const CommunicateWithTraineeCard = document.querySelector('.div-20');
 
     // Add click event listener to the CommunicateWithCoachCard
-    CommunicateWithCoachCard.addEventListener('click', function(event) {
+    CommunicateWithTraineeCard.addEventListener('click', function(event) {
         // Navigate to the chatroom page
         window.location.href = 'http://localhost:3002';
     });
@@ -50,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../html/exerciseLibrary.html';
     });
 });
+
+
 
 
 // when user click on (others) link

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/recommendedBodyPart.css">
+    <link rel="stylesheet" href="../css/custom_alert.css">
     <title>Recommended Body Part</title>
 </head>
 <body>
@@ -19,11 +20,19 @@
             <div class="div-4">Gym Activity Tracker</div>
           </div>
           <div class="div-5">
-            <div class="div-6">Home</div>
-            <div class="div-7">Workouts</div>
-            <div class="div-8">Exercises</div>
-            <div class="div-9">Chat</div>
-            <div class="div-10">Others</div>
+            <div class="div-7"><a href="trainee_home.html">Home</a></div>
+            <div class="div-7"><a href="profileTrainee.html">Profile</a></div>
+            <div class="div-8"><a href="workouts.html">Workouts</a></div>
+            <div class="div-9"><a href="exerciseLibrary.html">Exercises</a></div>
+            <div class="div-10"><a href="http://localhost:3002">Chat</a></div>
+            <div class="div-10"><a href="user_type.html">Logout</a></div>
+            <div class="div-10">
+                <a href="#" id="othersLink">Others</a>
+                <div id="othersOptions" style="display: none;">
+                    <div><a href="recommendedBodyPart.html">Recommended Exercises</a></div>
+                    <div><a href="TrackProgress.html">Track Your Progress</a></div>
+                </div>
+            </div>
           </div>
         </div>
         <div class="div-11">Recommended Body Part</div>
@@ -51,33 +60,38 @@
           <br />
           that part.
         </div>
-        <div class="div-14">
+
+        <form id="inputForm" class="div-14">
           <div class="div-15">Lean Body Mass for Left Arm:</div>
-          <div class="div-16">1.91</div>
+          <input type="number" id="leanBodyMassLeftArm" class="div-16" min="0" max="200" value="99"/>
           <div class="div-17">Lean Body Mass Percent for Left Arm:</div>
-          <div class="div-18">90.2</div>
+          <input type="number" id="leanBodyMassPercentLeftArm" class="div-18" min="0" max="200" value="97"/>
           <div class="div-19">Lean Body Mass for Right Arm:</div>
-          <div class="div-20">1.99</div>
+          <input type="number" id="leanBodyMassRightArm" class="div-20" min="0" max="200" value="95"/>
           <div class="div-21">Lean Body Mass Percent for Right Arm:</div>
-          <div class="div-22">94.1</div>
+          <input type="number" id="leanBodyMassPercentRightArm" class="div-22" min="0" max="200" value="92"/>
           <div class="div-23">Lean Body Mass for Left Leg:</div>
-          <div class="div-24">5.15</div>
+          <input type="number" id="leanBodyMassLeftLeg" class="div-24" min="0" max="200" value="86"/>
           <div class="div-25">Lean Body Mass Percent for Left Leg:</div>
-          <div class="div-26">72.8</div>
+          <input type="number" id="leanBodyMassPercentLeftLeg" class="div-26" min="0" max="200" value="49"/>
           <div class="div-27">Lean Body Mass for Right Leg:</div>
-          <div class="div-28">5.24</div>
+          <input type="number" id="leanBodyMassRightLeg" class="div-28" min="0" max="200" value="69"/>
           <div class="div-29">Lean Body Mass Percent for Right Leg:</div>
-          <div class="div-30">74.3</div>
+          <input type="number" id="leanBodyMassPercentRightLeg" class="div-30" min="0" max="200" value="77"/>
           <div class="div-31">Lean Body Mass for Trunk:</div>
-          <div class="div-32">17.7</div>
+          <input type="number" id="leanBodyMassTrunk" class="div-32" min="0" max="200"value="87"/>
           <div class="div-33">Lean Body Mass Percent for Trunk:</div>
-          <div class="div-34">92.2</div>
-        </div>
+          <input type="number" id="leanBodyMassPercentTrunk" class="div-34" min="0" max="200" value="90"/>
+      
+          <button type="submit" class="button">Predict</button>
+        </form>
+        
+        
         <div class="div-35">
           The Weakest Body Part is:
-          <span style="font-weight: 700">Left Leg</span>
+          <span id="weakest-body-part" style="font-weight: 700"></span>
         </div>
-        <div class="div-36">Focus on Left Leg Exercises</div>
+        <div class="div-36" id="info">Focus on Left Leg Exercises</div>
         <div class="div-37">
           <div class="div-38">
             <div class="div-39">Copyright</div>
@@ -97,6 +111,11 @@
             <div class="div-46">Contact</div>
           </div>
         </div>
-      </div>     
+      </div>
+      
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+      <script src="../js/recommendedBodyPart.js"></script>
 </body>
 </html>

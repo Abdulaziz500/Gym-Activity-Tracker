@@ -9,15 +9,15 @@ export class Sets extends BaseEntity {
     @Column()
     setNumber!: number;
 
-    @Column({ nullable: true })
-    weight?: number; // Making weight optional by using '?:'
+    @Column({ type: "int", nullable: true })
+    weight!: number; // Making weight optional by using '?:'
 
-    @Column({ nullable: false }) // Making reps required by omitting 'nullable' option
+    @Column({ type: "int", nullable: false }) // Making reps required by omitting 'nullable' option
     reps!: number;
 
     @Column()
     done!: boolean;
 
-    @ManyToOne(() => Includes, includes => includes.sets)
+    @ManyToOne(() => Includes, includes => includes.sets, { onDelete: "CASCADE" })
     includes!: Includes;
 }

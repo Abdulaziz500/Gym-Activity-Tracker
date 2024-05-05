@@ -30,13 +30,19 @@ export const s_get_trainees = async (req:Request,res:Response)=>{
     return trainees
 }
 
-export const s_get_trainee = async (req:Request,res:Response)=>{
-    const trainee_id:any = req.params.id
-    const trainee = await Trainee.findOne({where:{id:trainee_id}})
-    if(trainee?.id){
-        return trainee
-    }else{
-        return "trainee not found"
+export const s_get_trainee = async (req: Request, res: Response) => {
+    const trainee_id: any = req.params.id;
+    const trainee = await Trainee.findOne({ where: { id: trainee_id } });
+    if (trainee?.id) {
+        // Convert date object to string
+        const dateOfBirthString = trainee.dateOfBirth.toISOString();
+        // Extract date portion from the trainee's date of birth
+        const dateOfBirth = dateOfBirthString.split("T")[0];
+        // Construct a new trainee object with date of birth in date format
+        const traineeWithDateOfBirth = { ...trainee, dateOfBirth };
+        return traineeWithDateOfBirth;
+    } else {
+        return "Trainee not found";
     }
 }
 

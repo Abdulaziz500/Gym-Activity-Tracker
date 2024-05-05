@@ -80,9 +80,7 @@ body {
   flex-grow: 1;
   cursor: pointer;
 }
-.div-6:hover {
-    text-decoration: underline;
-}
+
 
 .div-7 {
   font-family: Roboto, sans-serif;
@@ -90,30 +88,21 @@ body {
   flex-basis: auto;
   cursor: pointer;
 }
-.div-7:hover {
-    text-decoration: underline;
-}
+
 .div-8 {
   font-family: Roboto, sans-serif;
   cursor: pointer;
 }
-.div-8:hover {
-    text-decoration: underline;
-}
+
 .div-9 {
   font-family: Roboto, sans-serif;
   cursor: pointer;
 }
-.div-9:hover {
-    text-decoration: underline;
-}
+
 .div-10 {
   font-family: Roboto, sans-serif;
   flex-grow: 1;
   cursor: pointer;
-}
-.div-10:hover {
-    text-decoration: underline;
 }
 .div-11 {
   margin-top: 44px;
@@ -189,6 +178,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 35px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-16 {
@@ -215,6 +205,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 38px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-18 {
@@ -241,6 +232,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 37px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-20 {
@@ -267,6 +259,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 37px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-22 {
@@ -293,6 +286,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 35px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-24 {
@@ -319,6 +313,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 37px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-26 {
@@ -345,6 +340,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 35px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-28 {
@@ -371,6 +367,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 31px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-30 {
@@ -397,6 +394,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 33px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-32 {
@@ -423,6 +421,7 @@ body {
   justify-content: center;
   white-space: nowrap;
   padding: 10px 38px;
+  border: none;
 }
 @media (max-width: 991px) {
   .div-34 {
@@ -444,6 +443,7 @@ body {
   margin-top: 38px;
   white-space: nowrap;
   font: 400 32px Roboto, sans-serif;
+  display: none;
 }
 @media (max-width: 991px) {
   .div-36 {
@@ -541,4 +541,85 @@ body {
 }
 .div-46:hover {
     text-decoration: underline;
+}
+
+
+/* //////////////////////////////////////// */
+
+.button {
+  font-family: Roboto, sans-serif;
+  border-radius: 20px;
+  background-color: #04AA6D;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 20px;
+  border: none;
+  height: auto;
+  width: 100%;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 20px;
+}
+.button:hover {
+  background-color: #04935e;
+  color: white;
+}
+
+
+/* //////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+
+/* /////////////////////////////////////////////////// */
+    /* Style for the links */
+    .div-5 a {
+      color: #333; /* Original color */
+      text-decoration: none; /* Remove underline */
+  }
+
+  /* Style for the links on hover */
+  .div-5 a:hover {
+      color: #555; /* Adjust the hover color as desired */
+  }
+
+/* ////////////////////////////////////////////////// */
+/* (others) link styles */
+
+/* Style for the options container */
+#othersOptions {
+  display: none;
+  position: absolute;
+  top: 90px; /* Adjust this value to position the options dropdown */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 999; /* Ensure dropdown appears on top of other content */
+  margin-top: 30px;
+}
+
+/* Style for each individual option */
+#othersOptions div {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for options */
+#othersOptions div:hover {
+  background-color: #f2f2f2;
 }

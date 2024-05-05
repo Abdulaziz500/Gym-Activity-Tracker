@@ -22,3 +22,25 @@ function get_exercise() {
             console.error('Error fetching exercise details:', error);
         });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// when user click on (others) link
+document.getElementById('othersLink').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent the default link behavior
+    var othersOptions = document.getElementById('othersOptions');
+    if (othersOptions.style.display === 'none') {
+        othersOptions.style.display = 'block';
+    } else {
+        othersOptions.style.display = 'none';
+    }
+});
