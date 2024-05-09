@@ -1,5 +1,5 @@
 import { Request,Response } from "express"
-import {s_login,s_register} from "../services/auth.service"
+import {s_login,s_register} from "../services/authCoach.service"
 
 export const login = async (req:Request,res:Response)=>{
     const result = await s_login(req,res)

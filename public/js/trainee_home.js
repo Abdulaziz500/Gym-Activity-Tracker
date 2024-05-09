@@ -52,6 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+//When user click on track Progress Card
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the ExerciseLibraryCard element
+    const trackProgressCard = document.querySelector('.div-23');
+
+    // Add click event listener to the recommendedExercisesCard
+    trackProgressCard.addEventListener('click', function(event) {
+        // Navigate to the ExerciseLibrary page
+        window.location.href = '../html/trackProgress.html';
+    });
+});
+
+
+
+
 // when user click on (others) link
 document.getElementById('othersLink').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent the default link behavior

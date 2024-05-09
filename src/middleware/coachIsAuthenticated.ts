@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Trainee } from "../entities/trainee.entity";
+import { Coach } from "../entities/coach.entity";
 
-export const isAuthenticated = async (req:Request,res:Response,next:NextFunction)=>{
+export const coachIsAuthenticated = async (req:Request,res:Response,next:NextFunction)=>{
     if(!req.headers.authorization){
         return res.status(401).json({success:false,message:"No authorization headers available"})
     }
@@ -18,12 +18,12 @@ export const isAuthenticated = async (req:Request,res:Response,next:NextFunction
     }catch(err){
         return res.status(401).json({success:false,message:"Invalid token"})
     }
-    if(!tokenBody.traineeId) return res.status(401).json({success:false,message:"Invalid token because of missing traineeId"})
+    if(!tokenBody.coachId) return res.status(401).json({success:false,message:"Invalid token because of missing coachId"})
 
-    const trainee = await Trainee.findOne({where:{id:tokenBody.traineeId}})
-    if(!trainee) return res.status(401).json({success:false,message:"Trainee not found"})
+    const coach = await Coach.findOne({where:{id:tokenBody.coachId}})
+    if(!coach) return res.status(401).json({success:false,message:"Coach not found"})
     else{
-        req.traineeData = trainee
+        req.coachData = coach
         next()
     }
 }

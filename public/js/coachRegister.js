@@ -1,4 +1,4 @@
-const form = document.getElementById('traineeRegistrationForm');
+const form = document.getElementById('coachRegistrationForm');
 const firstNameInput = document.getElementById('firstName');
 const firstNameError = document.getElementById('firstNameError');
 const lastNameInput = document.getElementById('lastName');
@@ -11,11 +11,11 @@ const confirmPasswordInput = document.getElementById('confirmPassword');
 const confirmPasswordError = document.getElementById('confirmPasswordError');
 const emailInput = document.getElementById('email');
 const emailError = document.getElementById('emailError');
+const certificateInput = document.getElementById('certificate');
+const certificateError = document.getElementById('certificateError');
+const yearsOfExperienceInput = document.getElementById('yearsOfExperience');
+const yearsOfExperienceError = document.getElementById('yearsOfExperienceError');
 const selectedGender = document.querySelector('input[name="gender"]:checked');
-const weightInput = document.getElementById('weight');
-const weightError = document.getElementById('weightError');
-const heightInput = document.getElementById('height');
-const heightError = document.getElementById('heightError');
 const dateOfBirthInput = document.getElementById('dateOfBirth');
 const dateOfBirthError = document.getElementById('dateOfBirthError');
 const submitButton = form.querySelector('button[type="submit"]');
@@ -33,13 +33,13 @@ form.addEventListener('submit', function(event) {
         formData.append("username", usernameInput.value);
         formData.append("password", passwordInput.value);
         formData.append("email", emailInput.value);
+        formData.append("certificate", certificateInput.value);
+        formData.append("yearsOfExperience", yearsOfExperienceInput.value);
         formData.append("gender", selectedGender.value);
-        formData.append("weight", weightInput.value);
-        formData.append("height", heightInput.value);
         formData.append("dateOfBirth", dateOfBirthInput.value);
     
     
-        const url = 'http://localhost:3000/api/v1/authTrainee/register'; // Replace 'your-backend-url' with your actual backend endpoint
+        const url = 'http://localhost:3000/api/v1/coachingRequests/create_coaching_request';
     
         axios.post(url, formData, {
             headers: {
@@ -51,11 +51,11 @@ form.addEventListener('submit', function(event) {
                 console.log('Success:', response.data);
     
                 // Store token and user data in local storage
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('user', JSON.stringify(response.data.user));
+                // localStorage.setItem('token', response.data.token);
+                // localStorage.setItem('user', JSON.stringify(response.data.user));
     
-                // Redirect the user to the trainee home page
-                window.location.href = 'trainee_home.html'; 
+                // Redirect the user to the waiting page
+                window.location.href = '../html/waitingPage.html'; 
             })
             .catch(error => {
                 // Handle errors during the Axios request
@@ -313,44 +313,39 @@ function isValidDomain(domain) {
 
 
 
-
-weightInput.addEventListener('input', function() {
-    const errorMessage = validateWeight(weightInput.value);
+//certificate validation
+certificateInput.addEventListener('input', function() {
+    const errorMessage = validateCertificate(certificateInput.value);
     if (errorMessage) {
-        weightError.textContent = errorMessage;
-        weightError.style.display = 'block';
+        certificateError.textContent = errorMessage;
+        certificateError.style.display = 'block';
     } else {
-        weightError.style.display = 'none';
+        certificateError.style.display = 'none';
     }
 });
-function validateWeight(weight) {
-    if (weight.trim() !== "") {
-        const numericWeight = parseFloat(weight);
-        if (isNaN(numericWeight) || numericWeight < 30 || numericWeight > 300) {
-            return "Please enter a valid weight.";
-        }
+function validateCertificate(certificate) {
+    if (!certificate.trim()) {
+        return "Certificate is required.";
     }
     return null;
 }
 
-
-
-
-heightInput.addEventListener('input', function() {
-    const errorMessage = validateHeight(heightInput.value);
+//Years of experience validation
+yearsOfExperienceInput.addEventListener('input', function() {
+    const errorMessage = validateYearsOfExperience(yearsOfExperienceInput.value);
     if (errorMessage) {
-        heightError.textContent = errorMessage;
-        heightError.style.display = 'block';
+        yearsOfExperienceError.textContent = errorMessage;
+        yearsOfExperienceError.style.display = 'block';
     } else {
-        heightError.style.display = 'none';
+        yearsOfExperienceError.style.display = 'none';
     }
 });
-function validateHeight(height) {
-    if (height.trim() !== "") {
-        const numericHeight = parseFloat(height);
-        if (isNaN(numericHeight) || numericHeight < 130 || numericHeight > 250) {
-            return "Please enter a valid height.";
-        }
+function validateYearsOfExperience(yearsOfExperience) {
+    if (!yearsOfExperience.trim()) {
+        return "Years of experience is required.";
+    }
+    if (yearsOfExperience < 0) {
+        return "Years of experience should be a positive number.";
     }
     return null;
 }

@@ -6,7 +6,7 @@ export const s_create_trainee = async (req:Request,res:Response)=>{
         gender,age,weight,height} = req.body
     const userRole = "trainee"
     let coachId:any = null
-    let adminId:any = null
+    let adminId:any = 1
     const newTrainee = await Trainee.save({
         firstName:firstName,
         lastName:lastName,
@@ -26,7 +26,7 @@ export const s_create_trainee = async (req:Request,res:Response)=>{
 }
 
 export const s_get_trainees = async (req:Request,res:Response)=>{
-    const trainees = await Trainee.find({relations:["admin","coach"]})
+    const trainees = await Trainee.find()
     return trainees
 }
 
@@ -34,13 +34,18 @@ export const s_get_trainee = async (req: Request, res: Response) => {
     const trainee_id: any = req.params.id;
     const trainee = await Trainee.findOne({ where: { id: trainee_id } });
     if (trainee?.id) {
-        // Convert date object to string
-        const dateOfBirthString = trainee.dateOfBirth.toISOString();
-        // Extract date portion from the trainee's date of birth
-        const dateOfBirth = dateOfBirthString.split("T")[0];
-        // Construct a new trainee object with date of birth in date format
-        const traineeWithDateOfBirth = { ...trainee, dateOfBirth };
-        return traineeWithDateOfBirth;
+        if(trainee.dateOfBirth){
+            // Convert date object to string
+            const dateOfBirthString = trainee.dateOfBirth.toISOString();
+            // Extract date portion from the trainee's date of birth
+            const dateOfBirth = dateOfBirthString.split("T")[0];
+            // Construct a new trainee object with date of birth in date format
+            const traineeWithDateOfBirth = { ...trainee, dateOfBirth };
+            return traineeWithDateOfBirth;
+        }else{
+            return trainee
+        }
+
     } else {
         return "Trainee not found";
     }

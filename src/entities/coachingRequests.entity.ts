@@ -4,8 +4,8 @@ import { User } from "./user.entity";
 import { Admin } from "./admin.entity";
 import { Workout } from "./workout.entity";
 
-@Entity("coach")
-export class Coach extends User {
+@Entity("coaching-requests")
+export class CoachingRequests extends User {
     @PrimaryGeneratedColumn()
     id!:number
 
@@ -23,6 +23,9 @@ export class Coach extends User {
 
     @Column({nullable:true})
     age!:number
+
+    @Column({nullable:false, default: false})
+    accepted!:boolean
 
     @OneToMany(() => Trainee, (trainee) => trainee.coach)
     trainees!: Trainee[];

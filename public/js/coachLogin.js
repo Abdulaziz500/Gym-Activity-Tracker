@@ -1,4 +1,4 @@
-const form = document.getElementById('traineeLoginForm');
+const form = document.getElementById('coachLoginForm');
 const emailInput = document.getElementById('email');
 const emailError = document.getElementById('emailError');
 const passwordInput = document.getElementById('password');
@@ -16,7 +16,7 @@ form.addEventListener('submit', function(event) {
         formData.append("email", emailInput.value);
         formData.append("password", passwordInput.value);
     
-        const url = 'http://localhost:3000/api/v1/authTrainee/login'; // Replace 'your-backend-url' with your actual backend endpoint
+        const url = 'http://localhost:3000/api/v1/authCoach/login';
     
         axios.post(url, formData, {
             headers: {
@@ -26,13 +26,19 @@ form.addEventListener('submit', function(event) {
             .then(response => {
                 // Handle successful response from the server
                 console.log('Success:', response.data);
-    
-                // Store token and user data in local storage
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('user', JSON.stringify(response.data.user));
-    
-                // Redirect the user to the trainee home page
-                window.location.href = '../html/trainee_home.html'; 
+
+                if(response.data.status === "refused"){
+                    showCustomAlert(response.data.message);
+                }else if (response.data.status === "waiting"){
+                    window.location.href = '../html/waitingPage.html';
+                }else if(response.data.status === "accepted"){
+                    // Store token and user data in local storage
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+                    // Redirect the user to the coach home page
+                    window.location.href = '../html/coachHome.html';
+                } 
             })
             .catch(error => {
                 // Handle errors during the Axios request

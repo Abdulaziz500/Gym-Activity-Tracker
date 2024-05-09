@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/custom_alert.css">
-    <title>Login Page</title>
+    <title>Admin Login Page</title>
 </head>
 <body>
     <div class="div">
@@ -17,9 +17,9 @@
             />
             <div class="div-2">
                 <div class="div-3">Gym Activity Tracker</div>
-                    <form id="traineeLoginForm">
+                    <form id="adminLoginForm">
                         <div class="div-4">
-                            <div class="div-5">Login as Trainee</div>
+                            <div class="div-5">Login as Admin</div>
                             <div class="div-6">
                                 <div class="div-7">Email</div>
                                 <input type="email" id="email" required name="email" value="tt@gmail.com"/>
@@ -31,31 +31,21 @@
                                     <a href="#" class="forgot-password-link">Forgot Password?</a>
                                 </div>                                
                                 <button type="submit" class="div-12">Login</button>
-                                <div class="div-13">
+                                <!-- <div class="div-13">
                                     <div class="div-14">Don’t have an account !</div>
                                     <div class="div-15">Register</div>
-                            </div>
+                                </div> -->
                         </div>
                     </form>
             </div>
         </div>
     </div>
-
+    <div class="custom-alert">
+        <span class="close-btn">&times;</span>
+        <p>Login failed. Please try again later.</p>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-    <script src="../js/validateTraineeLogin.js"></script>
-    <script>
-        //When user click on register link
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the register link element
-            const registerLink = document.querySelector('.div-15');
-        
-            // Add click event listener to the register link
-            registerLink.addEventListener('click', function(event) {
-                // Navigate to the register page
-                window.location.href = './trainee_register.html'; // Replace 'register.html' with the actual URL of your register page
-            });
-        });
-    </script>
+    <script src="../js/adminLogin.js"></script>
     <script>
         // Handle click event on "Forgot Password" link
         document.addEventListener('DOMContentLoaded', function() {

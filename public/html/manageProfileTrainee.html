@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile Trainee</title>
+    <link rel="stylesheet" href="../css/manageProfileTrainee.css">
+    <link rel="stylesheet" href="../css/custom_alert.css">
+</head>
+<body>
+    <div class="gym-activity-tracker">
+
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                <div class="logo-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e52178c9b114c8f7fa87f2e051fe02f00fe4165c15656d22ec29379c10522133?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Logo" class="logo-image" />
+                    <div class="logo-text">Gym Activity Tracker</div>
+                </div>
+                </div>
+                <div class="nav-container">
+                    <div class="nav-menu">
+                        <div class="nav-item"><a href="./adminHome.html">Home</a></div>
+                        <div class="nav-item"><a href="./manageCoaches.html">Coaches</a></div>
+                        <div class="nav-item"><a href="./manageTrainees.html">Trainees</a></div>
+                        <div class="nav-item"><a href="./manageExercises.html">Exercises</a></div>
+                        <div class="nav-item"><a href="adminLogin.html">Logout</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="container">
+            <div class="user-info">
+                <h2>Trainee Profile</h2>
+                <p><strong>First Name:</strong> <span id="firstName"></span></p>
+                <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+                <p><strong>Username:</strong> <span id="username"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>User Role:</strong> <span id="userRole"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="dateOfBirth"></span></p>
+                <p><strong>Gender:</strong> <span id="gender"></span></p>
+                <p><strong>Age:</strong> <span id="age"></span></p>
+                <p><strong>Weight:</strong> <span id="weight"></span></p>
+                <p><strong>Height:</strong> <span id="height"></span></p>
+
+                <button id="deleteButton">Delete</button>
+                <button id="updateButton">Update</button>
+            </div>
+        </div>   
+        
+        
+
+
+
+
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Update Trainee Info</h2>
+                <div class="input-container">
+                    <label for="updatedFirstName">First Name:</label>
+                    <input type="text" id="updatedFirstName" placeholder="Enter updated first name">
+                </div>
+                <div class="input-container">
+                    <label for="updatedLastName">Last Name:</label>
+                    <input type="text" id="updatedLastName" placeholder="Enter updated last name">
+                </div>
+                <div class="input-container">
+                    <label for="updatedUsername">Username:</label>
+                    <input type="text" id="updatedUsername" placeholder="Enter updated username">
+                </div>
+                <div class="input-container">
+                    <label for="updatedEmail">Email:</label>
+                    <input type="email" id="updatedEmail" placeholder="Enter updated email">
+                </div>
+                <div class="input-container">
+                    <label for="updatedDateOfBirth">Date of Birth:</label>
+                    <input type="date" id="updatedDateOfBirth" placeholder="Enter updated date of birth">
+                </div>
+                <div class="input-container">
+                    <label for="updatedGender">Gender:</label>
+                    <input type="text" id="updatedGender" placeholder="Enter updated gender">
+                </div>
+                <div class="input-container">
+                    <label for="updatedAge">Age:</label>
+                    <input type="number" id="updatedAge" placeholder="Enter updated age">
+                </div>
+                <div class="input-container">
+                    <label for="updatedWeight">Weight:</label>
+                    <input type="number" id="updatedWeight" placeholder="Enter updated weight">
+                </div>
+                <div class="input-container">
+                    <label for="updatedHeight">Height:</label>
+                    <input type="number" id="updatedHeight" placeholder="Enter updated height">
+                </div>
+
+                <button id="submitUpdate">Update</button>
+            </div>
+        </div> 
+
+
+        
+
+
+
+
+
+
+        <div class="footer">
+            <div class="copyright">
+              <div class="copyright-text">Copyright</div>
+              <div class="copyright-year">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fa482996855a6a1fd2521c97f6ba2114a5592594c94b29a4ad9d524616c9dc3?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Copyright" class="copyright-icon" />
+                <div class="copyright-year-text">2023</div>
+              </div>
+              <div class="footer-brand">GymActivityTracker</div>
+            </div>
+            <div class="footer-links">
+              <div class="footer-link">Home</div>
+              <div class="footer-link">About</div>
+              <div class="footer-link">Contact</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/manageProfileTrainee.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile Exercise</title>
+    <link rel="stylesheet" href="../css/manageProfileExercise.css">
+    <link rel="stylesheet" href="../css/custom_alert.css">
+</head>
+<body>
+    <div class="gym-activity-tracker">
+
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                <div class="logo-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e52178c9b114c8f7fa87f2e051fe02f00fe4165c15656d22ec29379c10522133?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Logo" class="logo-image" />
+                    <div class="logo-text">Gym Activity Tracker</div>
+                </div>
+                </div>
+                <div class="nav-container">
+                    <div class="nav-menu">
+                        <div class="nav-item"><a href="./adminHome.html">Home</a></div>
+                        <div class="nav-item"><a href="./manageCoaches.html">Coaches</a></div>
+                        <div class="nav-item"><a href="./manageTrainees.html">Trainees</a></div>
+                        <div class="nav-item"><a href="./manageExercises.html">Exercises</a></div>
+                        <div class="nav-item"><a href="adminLogin.html">Logout</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="exercise-details">
+            <div class="exercise-image">
+                <img id="exercise-image" src="../imgs/Barbell glute bridge.png" alt="Exercise Image">
+            </div>
+            <div class="exercise-info">
+                <h1 id="exercise-name">Exercise Name</h1>
+                <p><strong>Difficulty:</strong> <span id="exercise-difficulty"></span></p>
+                <p><strong>Equipment:</strong> <span id="exercise-equipment"></span></p>
+                <p><strong>Muscle:</strong> <span id="exercise-muscle"></span></p>
+                <p><strong>Type:</strong> <span id="exercise-type"></span></p>
+                <p><strong>Instructions:</strong></p>
+                <p id="exercise-instructions"></p>
+
+                <button id="deleteButton">Delete</button>
+                <button id="updateButton">Update</button>
+            </div>
+        </div>  
+        
+        
+
+
+
+
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Update Trainee Info</h2>
+                <div class="input-container">
+                    <label for="updatedExerciseName">Exercise Name:</label>
+                    <input type="text" id="updatedExerciseName" placeholder="Enter updated exercise name">
+                </div>
+                <div class="input-container">
+                    <label for="updatedDifficulty">Difficulty:</label>
+                    <input type="text" id="updatedDifficulty" placeholder="Enter updated difficulty">
+                </div>
+                <div class="input-container">
+                    <label for="updatedEquipment">Equipment:</label>
+                    <input type="text" id="updatedEquipment" placeholder="Enter updated equipment">
+                </div>
+                <div class="input-container">
+                    <label for="updatedMuscle">Muscle:</label>
+                    <input type="email" id="updatedMuscle" placeholder="Enter updated muscle">
+                </div>
+                <div class="input-container">
+                    <label for="updatedType">Type:</label>
+                    <input type="date" id="updatedType" placeholder="Enter updated type">
+                </div>
+                <div class="input-container">
+                    <label for="updatedInstructions">Instructions:</label>
+                    <input type="text" id="updatedInstructions" placeholder="Enter updated instructions">
+                </div>
+
+                <button id="submitUpdate">Update</button>
+            </div>
+        </div> 
+
+
+        
+
+
+
+
+
+
+        <div class="footer">
+            <div class="copyright">
+              <div class="copyright-text">Copyright</div>
+              <div class="copyright-year">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fa482996855a6a1fd2521c97f6ba2114a5592594c94b29a4ad9d524616c9dc3?apiKey=9502236416344e4c804c4dccd781f6a4&" alt="Copyright" class="copyright-icon" />
+                <div class="copyright-year-text">2023</div>
+              </div>
+              <div class="footer-brand">GymActivityTracker</div>
+            </div>
+            <div class="footer-links">
+              <div class="footer-link">Home</div>
+              <div class="footer-link">About</div>
+              <div class="footer-link">Contact</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/manageProfileExercise.js"></script>
+</body>
+</html>

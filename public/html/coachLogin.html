@@ -19,7 +19,7 @@
                 <div class="div-3">Gym Activity Tracker</div>
                     <form id="coachLoginForm">
                         <div class="div-4">
-                            <div class="div-5">Login</div>
+                            <div class="div-5">Login as Coach</div>
                             <div class="div-6">
                                 <div class="div-7">Email</div>
                                 <input type="email" id="email" required name="email" value="tt@gmail.com"/>
@@ -45,7 +45,7 @@
         <p>Login failed. Please try again later.</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-    <script src="../js/validateTraineeLogin.js"></script>
+    <script src="../js/coachLogin.js"></script>
     <script>
         //When user click on register link
         document.addEventListener('DOMContentLoaded', function() {
@@ -69,18 +69,6 @@
             forgotPasswordLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 window.location.href = './forgot_password.html'; // Navigate to the forgot password page
-            });
-        });
-    
-        // Handle form submission for password reset
-        document.addEventListener('DOMContentLoaded', function() {
-            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-    
-            forgotPasswordForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Add logic to handle form submission for password reset
-                // You can use AJAX (e.g., Axios) to send a request to the server for password reset
-                // Once the request is successful, display a success message or redirect the user to a confirmation page
             });
         });
     </script>              

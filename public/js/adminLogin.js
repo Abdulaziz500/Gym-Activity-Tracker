@@ -1,4 +1,4 @@
-const form = document.getElementById('traineeLoginForm');
+const form = document.getElementById('adminLoginForm');
 const emailInput = document.getElementById('email');
 const emailError = document.getElementById('emailError');
 const passwordInput = document.getElementById('password');
@@ -16,7 +16,7 @@ form.addEventListener('submit', function(event) {
         formData.append("email", emailInput.value);
         formData.append("password", passwordInput.value);
     
-        const url = 'http://localhost:3000/api/v1/authTrainee/login'; // Replace 'your-backend-url' with your actual backend endpoint
+        const url = 'http://localhost:3000/api/v1/authAdmin/login'; // Replace 'your-backend-url' with your actual backend endpoint
     
         axios.post(url, formData, {
             headers: {
@@ -32,7 +32,7 @@ form.addEventListener('submit', function(event) {
                 localStorage.setItem('user', JSON.stringify(response.data.user));
     
                 // Redirect the user to the trainee home page
-                window.location.href = '../html/trainee_home.html'; 
+                window.location.href = '../html/adminHome.html'; 
             })
             .catch(error => {
                 // Handle errors during the Axios request
@@ -133,24 +133,8 @@ function validatePassword(password) {
     if (!password.trim()) {
         return "Password is required.";
     }
-    if (password.length < 8) {
-        return "Password should be at least 8 characters long.";
-    }
-    // Check for at least one uppercase letter
-    if (!/[A-Z]/.test(password)) {
-        return "Password should contain at least one uppercase letter.";
-    }
-    // Check for at least one lowercase letter
-    if (!/[a-z]/.test(password)) {
-        return "Password should contain at least one lowercase letter.";
-    }
-    // Check for at least one number
-    if (!/\d/.test(password)) {
-        return "Password should contain at least one number.";
-    }
-    // Check for at least one special character
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        return "Password should contain at least one special character.";
+    if (password.length < 6) {
+        return "Password should be at least 6 characters long.";
     }
     return null;
 }

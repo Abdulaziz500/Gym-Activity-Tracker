@@ -1,0 +1,275 @@
+* {
+    box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.input-error-message {
+  color: red;
+  display: none;
+  margin-top: 5px; /* Adjust margin as needed */
+  font-size: 14px; /* Adjust font size as needed */
+}
+.div {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.div-2 {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  min-height: 800px;
+  justify-content: center;
+  align-items: center;
+  padding: 47px 60px;
+}
+@media (max-width: 991px) {
+  .div-2 {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+.img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.div-3 {
+  position: relative;
+  display: flex;
+  margin-bottom: 31px;
+  max-width: 100%;
+  flex-direction: column;
+}
+.div-4 {
+  color: #fff;
+  font: 700 64px Roboto, sans-serif;
+  margin-top: -350px;
+  margin-left: 100px;
+  margin-bottom: 141px;
+}
+@media (max-width: 991px) {
+  .div-4 {
+    max-width: 100%;
+    font-size: 40px;
+  }
+}
+.div-5 {
+  border-radius: 20px;
+  border: 1px solid #000;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  color: #000;
+  font-weight: 400;
+  margin: 74px 19px 0;
+  padding: 13px 41px 41px;
+}
+@media (max-width: 991px) {
+  .div-5 {
+    max-width: 100%;
+    margin: 40px 10px 0 0;
+    padding: 0 20px;
+  }
+}
+.div-6 {
+  align-self: center;
+  font: 700 36px Roboto, sans-serif;
+}
+.div-7 {
+  font-family: Roboto, sans-serif;
+  margin-top: 95px;
+}
+@media (max-width: 991px) {
+  .div-7 {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}
+.div-9 {
+  font-family: Roboto, sans-serif;
+  margin-top: 31px;
+}
+@media (max-width: 991px) {
+  .div-9 {
+    max-width: 100%;
+  }
+}
+.div-11 {
+  font-family: Roboto, sans-serif;
+  margin-top: 31px;
+}
+@media (max-width: 991px) {
+  .div-11 {
+    max-width: 100%;
+  }
+}
+.div-13 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-13 {
+    max-width: 100%;
+  }
+}
+.div-15 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-15 {
+    max-width: 100%;
+  }
+}
+.div-17 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-17 {
+    max-width: 100%;
+  }
+}
+.div-19 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-19 {
+    max-width: 100%;
+  }
+}
+.div-20 {
+  border-radius: 20px;
+  background-color: #f0eeee;
+  margin-top: 23px;
+  height: 37px;
+}
+@media (max-width: 991px) {
+  .div-20 {
+    max-width: 100%;
+  }
+}
+.div-21 {
+  font-family: Roboto, sans-serif;
+  margin-top: 31px;
+}
+@media (max-width: 991px) {
+  .div-21 {
+    max-width: 100%;
+  }
+}
+input:not([type="radio"]) {
+    border-radius: 20px;
+    border: none;
+    background-color: #f0eeee;
+    margin-top: 18px;
+    height: 37px;
+    width: 100%;
+    padding: 5px;
+}
+@media (max-width: 991px) {
+  .div-22 {
+    max-width: 100%;
+  }
+}
+.div-23 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-23 {
+    max-width: 100%;
+  }
+}
+.div-24 {
+  border-radius: 20px;
+  background-color: #f0eeee;
+  margin-top: 18px;
+  height: 37px;
+}
+@media (max-width: 991px) {
+  .div-24 {
+    max-width: 100%;
+  }
+}
+.div-25 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-25 {
+    max-width: 100%;
+  }
+}
+.div-26 {
+  border-radius: 20px;
+  background-color: #f0eeee;
+  margin-top: 18px;
+  height: 37px;
+}
+@media (max-width: 991px) {
+  .div-26 {
+    max-width: 100%;
+  }
+}
+.div-27 {
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+@media (max-width: 991px) {
+  .div-27 {
+    max-width: 100%;
+  }
+}
+.div-28 {
+  border-radius: 20px;
+  background-color: #f0eeee;
+  margin-top: 23px;
+  height: 37px;
+}
+@media (max-width: 991px) {
+  .div-28 {
+    max-width: 100%;
+  }
+}
+.div-29 {
+  font-family: Roboto, sans-serif;
+  border-radius: 20px;
+  background-color: #04AA6D;
+  margin-top: 76px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 20px;
+  border: none;
+  height: auto;
+  width: 100%;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 20px;
+}
+.div-29:hover {
+    background-color: #04935e;
+    color: white;
+}
+@media (max-width: 991px) {
+  .div-29 {
+    max-width: 100%;
+    margin-top: 40px;
+    white-space: initial;
+    padding: 0 20px;
+  }
+}

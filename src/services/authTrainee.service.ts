@@ -57,7 +57,7 @@ export const s_register = async (req:Request,res:Response)=>{
     height = height || undefined;
 
     let coachId: any = null;
-    let adminId: any = null;
+    let adminId: any = 1;
     const check_trainee = await Trainee.findOne({ where: { email: email, password: password } });
 
     if (check_trainee) {
