@@ -1,0 +1,587 @@
+* {
+    box-sizing: border-box;
+    }
+    body {
+    margin: 0;
+    padding: 0;
+    }
+    .gym-activity-tracker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+      }
+    
+      .header {
+        width: 100%;
+        padding: 63px 46px 22px;
+        border-bottom: 2px solid rgba(0, 0, 0, 1);
+      }
+    
+      @media (max-width: 991px) {
+        .header {
+          max-width: 100%;
+          padding: 0 20px;
+        }
+      }
+    
+      .header-content {
+        display: flex;
+        gap: 20px;
+      }
+    
+      @media (max-width: 991px) {
+        .header-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+        }
+      }
+    
+      .logo-container {
+        display: flex;
+        flex-direction: column;
+        line-height: normal;
+        width: 36%;
+        margin-left: 0;
+      }
+    
+      @media (max-width: 991px) {
+        .logo-container {
+          width: 100%;
+        }
+      }
+    
+      .logo-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        font-size: 36px;
+        color: #000;
+        font-weight: 700;
+      }
+    
+      @media (max-width: 991px) {
+        .logo-wrapper {
+          margin-top: 40px;
+          flex-wrap: wrap;
+        }
+      }
+    
+      .logo-image {
+        width: 80px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+      }
+    
+      .logo-text {
+        font-family: Roboto, sans-serif;
+        margin: auto 0;
+        flex-grow: 1;
+        flex-basis: auto;
+      }
+    
+      @media (max-width: 991px) {
+        .logo-text {
+          white-space: initial;
+        }
+      }
+    
+      .nav-container {
+        display: flex;
+        flex-direction: column;
+        line-height: normal;
+        width: 64%;
+        margin-left: 20px;
+      }
+    
+      @media (max-width: 991px) {
+        .nav-container {
+          width: 100%;
+        }
+      }
+    
+      .nav-menu {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0px;
+        margin-top: 30px;
+        font-size: 24px;
+        color: #000;
+        font-weight: 400;
+      }
+    
+      @media (max-width: 991px) {
+        .nav-menu {
+          margin-top: 40px;
+          flex-wrap: wrap;
+        }
+      }
+  
+  
+  
+  
+  
+  
+      
+    
+      .nav-item a {
+        font-family: Roboto, sans-serif;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: inherit;
+        margin-right: 25px;
+        color: #333; /* Original color */
+        text-decoration: none;
+      }
+    
+      .nav-item a:hover {
+        color: #555;
+      }
+    
+      /* ////////////////////////////////////////////////// */
+    /* (others) link styles */
+    
+    /* Style for the options container */
+    #othersOptions {
+      display: none;
+      position: absolute;
+      top: 90px; /* Adjust this value to position the options dropdown */
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      z-index: 999; /* Ensure dropdown appears on top of other content */
+      margin-top: 30px;
+    }
+    
+    /* Style for each individual option */
+    #othersOptions div {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    /* Hover effect for options */
+    #othersOptions div:hover {
+      background-color: #f2f2f2;
+    }
+    /* //////////////////////////////////////////////// */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    .workout-info {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+  
+    .workout-info h2 {
+        font-size: 24px;
+        margin: 0 0 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+  
+    .workout-info-content {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+  
+    .workout-info-label {
+        flex: 0 0 auto;
+        margin-right: 10px;
+    }
+  
+    .workout-info-input {
+        flex: 1 1 auto;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 0px;
+    }
+  
+    .edit-workout-btn {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin-left: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+  
+    .edit-workout-btn:hover {
+        background-color: #0056b3;
+    }
+  
+    .workout-timer {
+        margin-bottom: 30px;
+    }
+    
+    .exercise {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+    
+    .exercise h2 {
+        color: #333;
+        font-size: 24px;
+        margin-top: 0;
+    }
+    
+    .add-set-btn {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+  
+    .add-set-btn:hover {
+        background-color: #0069d9;
+    }
+    .delete-set-btn {
+        background-color: #dc3545;
+        border: none; /* Remove border */
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding */
+        text-align: center; /* Center text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Display as inline block */
+        font-size: 16px; /* Font size */
+        border-radius: 4px; /* Rounded corners */
+        cursor: pointer; /* Add cursor pointer */
+        transition: background-color 0.3s; /* Smooth transition for background color */
+        margin-right: 5px;
+    }
+    
+    .delete-set-btn:hover {
+        background-color: #c82333;
+    }
+  
+    .delete-exercise-btn {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+  
+    .delete-exercise-btn:hover {
+        background-color: #c82333;
+    }
+  
+    .rest-timer-btn {
+      background-color: #007bff;
+      border: none; /* Remove border */
+      color: white; /* White text */
+      padding: 10px 20px; /* Padding */
+      text-align: center; /* Center text */
+      text-decoration: none; /* Remove underline */
+      display: inline-block; /* Display as inline block */
+      font-size: 16px; /* Font size */
+      border-radius: 4px; /* Rounded corners */
+      cursor: pointer; /* Add cursor pointer */
+      transition: background-color 0.3s; /* Smooth transition for background color */
+      margin-right: 5px;
+    }
+  
+    .rest-timer-btn:hover {
+        background-color: #0069d9; /* Darker green on hover */
+    }
+  
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+    
+    input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        padding: 0;
+    }
+  
+    .set-row.done {
+      background-color: #04a104; /* Green background */
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+  
+    .action-btn {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+  
+    .action-btn:hover {
+        background-color: #0069d9;
+    }
+    
+    .cancel-btn {
+        background-color: #dc3545;
+    }
+  
+    .cancel-btn:hover {
+        background-color: #c82333;
+    }
+  
+  
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 124px;
+        padding: 39px 29px 39px 58px;
+        border-top: 2px solid rgba(0, 0, 0, 1);
+        font-size: 20px;
+        color: #000;
+        font-weight: 400;
+      }
+    
+      @media (max-width: 991px) {
+        .footer {
+          max-width: 100%;
+          flex-wrap: wrap;
+          margin-top: 40px;
+          white-space: initial;
+          padding: 0 20px;
+        }
+      }
+    
+      .copyright {
+        display: flex;
+        gap: 14px;
+      }
+    
+      @media (max-width: 991px) {
+        .copyright {
+          white-space: initial;
+        }
+      }
+    
+      .copyright-text {
+        font-family: Inter, sans-serif;
+        flex-grow: 1;
+      }
+    
+      .copyright-year {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        align-self: flex-start;
+      }
+    
+      @media (max-width: 991px) {
+        .copyright-year {
+          white-space: initial;
+        }
+      }
+    
+      .copyright-icon {
+        width: 17px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+      }
+    
+      .copyright-year-text {
+        font-family: Inter, sans-serif;
+        flex-grow: 1;
+      }
+    
+      .footer-brand {
+        color: #06f;
+        font-family: Inter, sans-serif;
+        flex-grow: 1;
+      }
+    
+      .footer-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+        align-self: flex-start;
+      }
+    
+      @media (max-width: 991px) {
+        .footer-links {
+          white-space: initial;
+        }
+      }
+    
+      .footer-link {
+        font-family: Inter, sans-serif;
+        cursor: pointer;
+        margin-right: 25px;
+      }
+  
+      @media (max-width: 991px) {
+        .footer-link {
+          white-space: initial;
+        }
+      }
+  
+      .footer-link:hover {
+        text-decoration: underline;
+      }
+  
+  
+  
+  
+  
+  
+  
+  /*-----------------------------------------------------*/
+  /* Exercise Modal Styles */
+  .exercise-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px; /* Add padding for better readability */
+  }
+  
+  .exercise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 100%; /* Set the maximum height of the exercise list */
+  }
+  
+  .exercise-item {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .exercise-item:hover {
+    background-color: #f0f0f0;
+  }
+  /* Exercise Modal Styles */
+  /*-----------------------------------------------------*/
+  
+  
+  
+  
+  /*-----------------------------------------------------*/
+  /* Rest timer modal styles*/
+  .rest-timer-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2196F3;
+    z-index: 9999;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  #rest-timer {
+    font-size: 24px;
+  }
+  /* Rest timer modal styles*/
+  /*-----------------------------------------------------*/

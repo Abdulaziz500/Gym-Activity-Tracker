@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to the startEmptyWorkoutButton
     startEmptyWorkoutButton.addEventListener('click', function(event) {
         // Navigate to the startEmptyWorkout page
-        window.location.href = '../html/startEmptyWorkout.html';
+        window.location.href = '../html/coachStartEmptyWorkout.html';
     });
 });
 
@@ -82,7 +82,7 @@ function getSavedWorkouts() {
                         const workoutId = card.getAttribute('data-id');
 
                         // Navigate to startEmptyWorkout.html with the workout ID as a parameter
-                        window.location.href = `startEmptyWorkout.html?id=${workoutId}`;
+                        window.location.href = `../html/coachStartEmptyWorkout.html?id=${workoutId}`;
                     });
 
                     // Add event listener for delete button if needed

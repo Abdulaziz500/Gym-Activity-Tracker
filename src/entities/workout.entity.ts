@@ -14,10 +14,10 @@ export class Workout extends BaseEntity {
     @Column()
     duration!: number;
 
-    @ManyToOne(() => Trainee, trainee => trainee.workouts)
+    @ManyToOne(() => Trainee, trainee => trainee.workouts, {onDelete: "CASCADE"})
     trainee!: Trainee;
 
-    @ManyToOne(() => Coach, coach => coach.workouts)
+    @ManyToOne(() => Coach, coach => coach.workouts, {onDelete: "CASCADE"})
     coach!: Coach;
 
     @OneToMany(() => Includes, includes => includes.workout)

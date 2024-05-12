@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to the CommunicateWithCoachCard
     CommunicateWithCoachCard.addEventListener('click', function(event) {
         // Navigate to the chatroom page
-        window.location.href = 'http://localhost:3002';
+        window.location.href = '../html/chatTrainee.html';
     });
 });
 

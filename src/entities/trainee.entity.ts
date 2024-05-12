@@ -31,7 +31,7 @@ export class Trainee extends User {
     @ManyToOne(() => Admin, (admin) => admin.trainees)
     admin!: Admin;
 
-    @OneToMany(() => Workout, (workouts) => workouts.trainee)
+    @OneToMany(() => Workout, (workouts) => workouts.trainee, { onDelete: "CASCADE" })
     workouts!: Workout[]
 
     @OneToMany(() => Recommendations, (recommendations) => recommendations.trainee)

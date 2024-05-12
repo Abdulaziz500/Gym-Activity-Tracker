@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to the logWorkoutsCard
     logWorkoutsCard.addEventListener('click', function(event) {
         // Navigate to the workouts page
-        window.location.href = '../html/workouts.html';
+        window.location.href = '../html/coachWorkouts.html';
     });
 });
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to the CommunicateWithCoachCard
     CommunicateWithTraineeCard.addEventListener('click', function(event) {
         // Navigate to the chatroom page
-        window.location.href = 'http://localhost:3002';
+        window.location.href = '../html/chatCoach.html';
     });
 });
 
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listener to the recommendedExercisesCard
     ExerciseLibraryCard.addEventListener('click', function(event) {
         // Navigate to the ExerciseLibrary page
-        window.location.href = '../html/exerciseLibrary.html';
+        window.location.href = '../html/coachExerciseLibrary.html';
     });
 });
 

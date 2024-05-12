@@ -62,13 +62,17 @@ export const s_get_coaching_request = async (req: Request, res: Response) => {
     const coach_id: any = req.params.id;
     const coach = await CoachingRequests.findOne({ where: { id: coach_id } });
     if (coach?.id) {
-        // Convert date object to string
-        const dateOfBirthString = coach.dateOfBirth.toISOString();
-        // Extract date portion from the trainee's date of birth
-        const dateOfBirth = dateOfBirthString.split("T")[0];
-        // Construct a new trainee object with date of birth in date format
-        const coachWithDateOfBirth = { ...coach, dateOfBirth };
-        return coachWithDateOfBirth;
+        if(coach.dateOfBirth){
+            // Convert date object to string
+            const dateOfBirthString = coach.dateOfBirth.toISOString();
+            // Extract date portion from the trainee's date of birth
+            const dateOfBirth = dateOfBirthString.split("T")[0];
+            // Construct a new trainee object with date of birth in date format
+            const coachWithDateOfBirth = { ...coach, dateOfBirth };
+            return coachWithDateOfBirth;
+        }else{
+            return coach
+        }
     } else {
         return "Coach not found";
     }

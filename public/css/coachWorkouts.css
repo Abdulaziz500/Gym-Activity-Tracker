@@ -1,0 +1,374 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.gym-activity-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
+
+  .header {
+    width: 100%;
+    padding: 63px 46px 22px;
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
+  }
+
+  @media (max-width: 991px) {
+    .header {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+
+  .header-content {
+    display: flex;
+    gap: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .header-content {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 36%;
+    margin-left: 0;
+  }
+
+  @media (max-width: 991px) {
+    .logo-container {
+      width: 100%;
+    }
+  }
+
+  .logo-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 36px;
+    color: #000;
+    font-weight: 700;
+  }
+
+  @media (max-width: 991px) {
+    .logo-wrapper {
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+  }
+
+  .logo-image {
+    width: 80px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .logo-text {
+    font-family: Roboto, sans-serif;
+    margin: auto 0;
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+
+  @media (max-width: 991px) {
+    .logo-text {
+      white-space: initial;
+    }
+  }
+
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 64%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .nav-container {
+      width: 100%;
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0px;
+    margin-top: 30px;
+    font-size: 24px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  @media (max-width: 991px) {
+    .nav-menu {
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+  }
+
+
+
+
+
+  
+
+
+
+  .nav-item a {
+    font-family: Roboto, sans-serif;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    margin-right: 25px;
+    color: #333; /* Original color */
+    text-decoration: none;
+  }
+
+  .nav-item a:hover {
+    color: #555;
+  }
+
+  /* ////////////////////////////////////////////////// */
+/* (others) link styles */
+
+/* Style for the options container */
+#othersOptions {
+  display: none;
+  position: absolute;
+  top: 90px; /* Adjust this value to position the options dropdown */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 999; /* Ensure dropdown appears on top of other content */
+  margin-top: 30px;
+}
+
+/* Style for each individual option */
+#othersOptions div {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for options */
+#othersOptions div:hover {
+  background-color: #f2f2f2;
+}
+/* //////////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+  
+  #start-empty-workout-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  #start-empty-workout-btn:hover {
+    background-color: #0069d9;
+  }
+  
+  #saved-workouts-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  #saved-workouts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .workout-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 27px rgb(0 0 0 / 20%);
+    padding: 20px;
+    width: 300px; /* Adjust as needed */
+    margin-bottom: 20px;
+  }
+  
+  .workout-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .workout-info {
+    margin-top: 10px;
+  }
+  
+  .exercise-info {
+    margin-bottom: 5px;
+  }
+  
+  .start-workout-btn {
+    background-color: #007bff; /* Changed to blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .start-workout-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .delete-workout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-workout-btn:hover {
+    background-color: #c82333;
+  }
+
+
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 124px;
+    padding: 39px 29px 39px 58px;
+    border-top: 2px solid rgba(0, 0, 0, 1);
+    font-size: 20px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  @media (max-width: 991px) {
+    .footer {
+      max-width: 100%;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+  .copyright {
+    display: flex;
+    gap: 14px;
+  }
+
+  @media (max-width: 991px) {
+    .copyright {
+      white-space: initial;
+    }
+  }
+
+  .copyright-text {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+  }
+
+  .copyright-year {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 991px) {
+    .copyright-year {
+      white-space: initial;
+    }
+  }
+
+  .copyright-icon {
+    width: 17px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .copyright-year-text {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+  }
+
+  .footer-brand {
+    color: #06f;
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 991px) {
+    .footer-links {
+      white-space: initial;
+    }
+  }
+
+  .footer-link {
+    font-family: Inter, sans-serif;
+    cursor: pointer;
+    margin-right: 25px;
+  }
+
+  @media (max-width: 991px) {
+    .footer-link {
+      white-space: initial;
+    }
+  }
+
+  .footer-link:hover {
+    text-decoration: underline;
+  }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exercise Library</title>
-  <link rel="stylesheet" href="../css/exerciseLibrary.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/custom_alert.css">
+<link rel="stylesheet" href="../css/coachStartEmptyWorkout.css">
+<title>Start Empty Workout</title>
 </head>
 <body>
     <div class="gym-activity-tracker">
-
         <div class="header">
             <div class="header-content">
                 <div class="logo-container">
@@ -19,16 +19,15 @@
                 </div>
                 <div class="nav-container">
                     <div class="nav-menu">
-                        <div class="nav-item"><a href="trainee_home.html">Home</a></div>
-                        <div class="nav-item"><a href="profileTrainee.html">Profile</a></div>
-                        <div class="nav-item"><a href="workouts.html">Workouts</a></div>
-                        <div class="nav-item"><a href="exerciseLibrary.html">Exercises</a></div>
-                        <div class="nav-item"><a href="./chatTrainee.html">Chat</a></div>
+                        <div class="nav-item"><a href="./coachHome.html">Home</a></div>
+                        <div class="nav-item"><a href="./profileCoach.html">Profile</a></div>
+                        <div class="nav-item"><a href="./coachWorkouts.html">Workouts</a></div>
+                        <div class="nav-item"><a href="./coachExerciseLibrary.html">Exercises</a></div>
+                        <div class="nav-item"><a href="./chatCoach.html">Chat</a></div>
                         <div class="nav-item"><a href="#" id="logoutLink">Logout</a></div>
                         <div class="nav-item">
                             <a href="#" id="othersLink">Others</a>
                             <div id="othersOptions" style="display: none;">
-                                <div><a href="recommendedBodyPart.html">Recommended Exercises</a></div>
                                 <div><a href="TrackProgress.html">Track Your Progress</a></div>
                             </div>
                         </div>
@@ -36,31 +35,35 @@
                 </div>
             </div>
         </div>
-
-
-
-        <div class="exercise-library" id="exercise-library">
-
-            <div class="exercise-card">
-              <img src="../imgs/Atlas Stones.png" alt="Exercise 1">
-              <h2>Exercise 1</h2>
+    
+        <!-- Workout Info -->
+        <div class="workout-info">
+            <h2>Workout Information</h2>
+            <div class="workout-info-content">
+                <label class="workout-info-label" for="workout-name">Workout Name:</label>
+                <input class="workout-info-input" type="text" id="workout-name" value="Your Workout Name">
+                <button class="edit-workout-btn" id="edit-workout-name">Edit Name</button>
             </div>
-            <div class="exercise-card">
-                <img src="../imgs/Barbell deficit deadlift.png" alt="Exercise 2">
-                <h2>Exercise 2</h2>
-            </div>
-            <div class="exercise-card">
-                <img src="../imgs/Barbell forward lunge.png" alt="Exercise 3">
-                <h2>Exercise 3</h2>
-            </div>
-            <div class="exercise-card">
-                <img src="../imgs/Barbell glute bridge.png" alt="Exercise 4">
-                <h2>Exercise 4</h2>
-            </div>
-            <!-- Add more exercise cards here -->
-
         </div>
-
+    
+        <!-- Workout Timer -->
+        <div class="workout-timer">
+            <h2>Workout Timer</h2>
+            <div id="timer">00:00</div>
+        </div>
+    
+    
+        <div id="exercise-container">
+    
+        </div>
+    
+    
+        <!-- Buttons for Actions -->
+        <div class="action-buttons">
+            <button class="action-btn" id="add-exercise-btn">Add Exercise</button>
+            <button class="action-btn" id="finish-workout-btn">Finish Workout</button>
+            <button class="action-btn cancel-btn" id="cancel-workout-btn">Cancel Workout</button>
+        </div>
 
 
         <div class="footer">
@@ -79,13 +82,17 @@
             </div>
         </div>
 
+        
+        <div class="custom-alert">
+            <span class="close-btn">&times;</span>
+            <p>You must have at least one set for this exercise.</p>
+        </div>
+
     </div>
-
-
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 
-    <script src="../js/exerciseLibrary.js"></script>
+    <script src="../js/coachStartEmptyWorkout.js"></script>
     <script src="../js/logout.js"></script>
 </body>
 </html>

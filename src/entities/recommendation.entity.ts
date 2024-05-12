@@ -39,6 +39,6 @@ export class Recommendations extends BaseEntity {
     @Column({nullable:false})
     recommendedBodyPart!:string
 
-    @ManyToOne(() => Trainee, (trainee) => trainee.recommendations)
+    @ManyToOne(() => Trainee, (trainee) => trainee.recommendations, { onDelete: "CASCADE" })
     trainee!: Trainee
 }

@@ -15,7 +15,13 @@ export const s_create_workout = async (req: Request, res: Response) => {
     const workout = new Workout();
     workout.name = name;
     workout.duration = duration;
-    workout.trainee = user;
+
+    if(user.userRole === "trainee"){
+        workout.trainee = user;
+
+    }else if(user.userRole === "coach"){
+        workout.coach = user;
+    }
 
     const includesEntries: Includes[] = [];
     const setsEntries: Sets[] = [];
@@ -182,74 +188,263 @@ export const s_get_workouts = async (req: Request, res: Response) => {
 
 
 
+// interface Includes2 {
+//     id: number;
+//     exercise: {
+//         id: number;
+//         name: string;
+//         type: string;
+//         muscle: string;
+//         equipment: string;
+//         difficulty: string;
+//         instructions: string;
+//         imagePath: string;
+//         sets: {
+//             id: number;
+//             setNumber: number;
+//             weight: number;
+//             reps: number;
+//             done: boolean;
+//         }[];
+//     } | null;
+// }
+
+// interface Sets2 {
+//     id: number;
+//     setNumber: number;
+//     weight: number;
+//     reps: number;
+//     done: boolean;
+// }
+
+// export const s_get_trainee_workouts = async (req: Request, res: Response) => {
+//     try {
+//         const userId = req.params.userId;
+//         const userRole = req.params.userRole;
+
+//         let workouts: any[] = [];
+
+//         if (userRole === "trainee") {
+//             workouts = await Workout.find({
+//                 where: { trainee: { id: +userId } },
+//                 relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+//             });
+//         } else if (userRole === "coach") {
+//             workouts = await Workout.find({
+//                 where: { coach: { id: +userId } },
+//                 relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+//             });
+//         }
+
+//         // Map the workouts to include the exercise and sets data
+//         const mappedWorkouts = workouts.map(workout => ({
+//             id: workout.id,
+//             name: workout.name,
+//             duration: workout.duration,
+//             trainee: workout.trainee ? {
+//                 id: workout.trainee.id,
+//                 firstName: workout.trainee.firstName,
+//                 lastName: workout.trainee.lastName,
+//                 username: workout.trainee.username,
+//                 email: workout.trainee.email,
+//                 dateOfBirth: workout.trainee.dateOfBirth,
+//                 userRole: workout.trainee.userRole,
+//                 gender: workout.trainee.gender,
+//                 age: workout.trainee.age,
+//                 weight: workout.trainee.weight,
+//                 height: workout.trainee.height,
+//             } : null,
+//             coach: workout.coach ? {
+//                 id: workout.coach.id,
+//                 firstName: workout.coach.firstName,
+//                 lastName: workout.coach.lastName,
+//                 username: workout.coach.username,
+//                 email: workout.coach.email,
+//                 userRole: workout.coach.userRole,
+//                 dateOfBirth: workout.coach.dateOfBirth,
+//                 gender: workout.coach.gender,
+//                 age: workout.coach.age,
+//                 yearsOfExperience: workout.coach.yearsOfExperience,
+//                 certificate: workout.coach.certificate,
+//             } : null,
+//             includes: workout.includes?.map((include: Includes2) => ({
+//                 id: include.id,
+//                 exercise: include.exercise ? {
+//                     id: include.exercise.id,
+//                     name: include.exercise.name,
+//                     type: include.exercise.type,
+//                     muscle: include.exercise.muscle,
+//                     equipment: include.exercise.equipment,
+//                     difficulty: include.exercise.difficulty,
+//                     instructions: include.exercise.instructions,
+//                     imagePath: include.exercise.imagePath,
+//                     sets: include.exercise.sets?.map((set: Sets2) => ({
+//                         id: set.id,
+//                         setNumber: set.setNumber,
+//                         weight: set.weight,
+//                         reps: set.reps,
+//                         done: set.done,
+//                     })) || [] // Provide an empty array if include.exercise.sets is undefined
+//                 } : null,
+//             })) || [], // Provide an empty array if workout.includes is undefined,
+//         }));
+
+//         return res.status(200).json(mappedWorkouts);
+//     } catch (error) {
+//         console.error('Error retrieving workouts:', error);
+//         return res.status(500).json({ error: 'Internal server error' });
+//     }
+// };
+
+
+
+
+
+
+
+
+
 export const s_get_trainee_workouts = async (req: Request, res: Response) => {
     try {
-        const traineeId = req.params.traineeId; // Assuming the trainee ID is passed as a request parameter
+        const userId = req.params.userId;
+        const userRole = req.params.userRole;
 
-        const workouts = await Workout.find({
-            where: { trainee: { id: +traineeId } }, // Filter workouts by trainee ID
-            relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
-        });
 
-        // Map the workouts to include the exercise and sets data
-        const mappedWorkouts = workouts.map(workout => ({
-            id: workout.id,
-            name: workout.name,
-            duration: workout.duration,
-            trainee: workout.trainee ? {
-                id: workout.trainee.id,
-                firstName: workout.trainee.firstName,
-                lastName: workout.trainee.lastName,
-                username: workout.trainee.username,
-                email: workout.trainee.email,
-                dateOfBirth: workout.trainee.dateOfBirth,
-                userRole: workout.trainee.userRole,
-                gender: workout.trainee.gender,
-                age: workout.trainee.age,
-                weight: workout.trainee.weight,
-                height: workout.trainee.height,
-            } : null,
-            coach: workout.coach ? {
-                id: workout.coach.id,
-                firstName: workout.coach.firstName,
-                lastName: workout.coach.lastName,
-                username: workout.coach.username,
-                email: workout.coach.email,
-                userRole: workout.coach.userRole,
-                dateOfBirth: workout.coach.dateOfBirth,
-                gender: workout.coach.gender,
-                age: workout.coach.age,
-                yearsOfExperience: workout.coach.yearsOfExperience,
-                certificate: workout.coach.certificate,
-            } : null,
-            includes: workout.includes.map(includes => ({
-                id: includes.id,
-                exercise: includes.exercise ? {
-                    id: includes.exercise.id,
-                    name: includes.exercise.name,
-                    type: includes.exercise.type,
-                    muscle: includes.exercise.muscle,
-                    equipment: includes.exercise.equipment,
-                    difficulty: includes.exercise.difficulty,
-                    instructions: includes.exercise.instructions,
-                    imagePath: includes.exercise.imagePath,
-                    sets: includes.sets.map(set => ({
-                        id: set.id,
-                        setNumber: set.setNumber,
-                        weight: set.weight,
-                        reps: set.reps,
-                        done: set.done,
-                    }))
+        if (userRole === "trainee") {
+            const workouts = await Workout.find({
+                where: { trainee: { id: +userId } },
+                relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+            });
+
+            // Map the workouts to include the exercise and sets data
+            const mappedWorkouts = workouts.map(workout => ({
+                id: workout.id,
+                name: workout.name,
+                duration: workout.duration,
+                trainee: workout.trainee ? {
+                    id: workout.trainee.id,
+                    firstName: workout.trainee.firstName,
+                    lastName: workout.trainee.lastName,
+                    username: workout.trainee.username,
+                    email: workout.trainee.email,
+                    dateOfBirth: workout.trainee.dateOfBirth,
+                    userRole: workout.trainee.userRole,
+                    gender: workout.trainee.gender,
+                    age: workout.trainee.age,
+                    weight: workout.trainee.weight,
+                    height: workout.trainee.height,
                 } : null,
-            })),
-        }));
+                coach: workout.coach ? {
+                    id: workout.coach.id,
+                    firstName: workout.coach.firstName,
+                    lastName: workout.coach.lastName,
+                    username: workout.coach.username,
+                    email: workout.coach.email,
+                    userRole: workout.coach.userRole,
+                    dateOfBirth: workout.coach.dateOfBirth,
+                    gender: workout.coach.gender,
+                    age: workout.coach.age,
+                    yearsOfExperience: workout.coach.yearsOfExperience,
+                    certificate: workout.coach.certificate,
+                } : null,
+                includes: workout.includes?.map(includes => ({
+                    id: includes.id,
+                    exercise: includes.exercise ? {
+                        id: includes.exercise.id,
+                        name: includes.exercise.name,
+                        type: includes.exercise.type,
+                        muscle: includes.exercise.muscle,
+                        equipment: includes.exercise.equipment,
+                        difficulty: includes.exercise.difficulty,
+                        instructions: includes.exercise.instructions,
+                        imagePath: includes.exercise.imagePath,
+                        sets: includes.sets.map(set => ({
+                            id: set.id,
+                            setNumber: set.setNumber,
+                            weight: set.weight,
+                            reps: set.reps,
+                            done: set.done,
+                        }))
+                    } : null,
+                }))
+            }));
 
-        return res.status(200).json(mappedWorkouts);
+            return res.status(200).json(mappedWorkouts);
+
+        } else if (userRole === "coach") {
+            const workouts = await Workout.find({
+                where: { coach: { id: +userId } },
+                relations: ['trainee', 'coach', 'includes', 'includes.exercise', 'includes.sets']
+            });
+
+            // Map the workouts to include the exercise and sets data
+            const mappedWorkouts = workouts.map(workout => ({
+                id: workout.id,
+                name: workout.name,
+                duration: workout.duration,
+                trainee: workout.trainee ? {
+                    id: workout.trainee.id,
+                    firstName: workout.trainee.firstName,
+                    lastName: workout.trainee.lastName,
+                    username: workout.trainee.username,
+                    email: workout.trainee.email,
+                    dateOfBirth: workout.trainee.dateOfBirth,
+                    userRole: workout.trainee.userRole,
+                    gender: workout.trainee.gender,
+                    age: workout.trainee.age,
+                    weight: workout.trainee.weight,
+                    height: workout.trainee.height,
+                } : null,
+                coach: workout.coach ? {
+                    id: workout.coach.id,
+                    firstName: workout.coach.firstName,
+                    lastName: workout.coach.lastName,
+                    username: workout.coach.username,
+                    email: workout.coach.email,
+                    userRole: workout.coach.userRole,
+                    dateOfBirth: workout.coach.dateOfBirth,
+                    gender: workout.coach.gender,
+                    age: workout.coach.age,
+                    yearsOfExperience: workout.coach.yearsOfExperience,
+                    certificate: workout.coach.certificate,
+                } : null,
+                includes: workout.includes?.map(includes => ({
+                    id: includes.id,
+                    exercise: includes.exercise ? {
+                        id: includes.exercise.id,
+                        name: includes.exercise.name,
+                        type: includes.exercise.type,
+                        muscle: includes.exercise.muscle,
+                        equipment: includes.exercise.equipment,
+                        difficulty: includes.exercise.difficulty,
+                        instructions: includes.exercise.instructions,
+                        imagePath: includes.exercise.imagePath,
+                        sets: includes.sets.map(set => ({
+                            id: set.id,
+                            setNumber: set.setNumber,
+                            weight: set.weight,
+                            reps: set.reps,
+                            done: set.done,
+                        }))
+                    } : null,
+                }))
+            }));
+
+            return res.status(200).json(mappedWorkouts);
+        }
     } catch (error) {
-        console.error('Error retrieving workouts for trainee:', error);
+        console.error('Error retrieving workouts:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+
+
+
+
+
+
 
 
 

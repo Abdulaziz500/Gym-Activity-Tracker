@@ -40,6 +40,6 @@ function getTrainees() {
             }
         })
         .catch(function (error) {
-            console.error('Error fetching coach data:', error);
+            console.error('Error fetching trainee data:', error);
         });
 }

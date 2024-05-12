@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Event listener for "Cancel Workout" button
     document.getElementById('cancel-workout-btn').addEventListener('click', function() {
-        window.location.href = '../html/workouts.html';
+        window.location.href = '../html/coachWorkouts.html';
     });
 });
 
@@ -609,7 +609,7 @@ function assembleWorkoutData() {
 
         // Redirect user to "workouts" page after three seconds
         setTimeout(() => {
-            window.location.href = '../html/workouts.html';
+            window.location.href = '../html/coachWorkouts.html';
         }, 3000);
     })
     .catch(error => {

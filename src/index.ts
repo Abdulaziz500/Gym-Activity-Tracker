@@ -1,4 +1,6 @@
-import express from "express";
+import express, { Application } from 'express';
+import http from 'http';
+import { Server, Socket } from 'socket.io';
 import cors from "cors";
 import "reflect-metadata";
 import { AppDataSource } from "./database/db";
@@ -16,21 +18,41 @@ import { workout_route } from "./routes/workout.route";
 import { delete_Entity_router } from "./routes/DeleteEntity.route";
 import { recommendedBodyPart_route } from "./routes/recommendedBodyPart.route";
 import { coaching_request_route } from "./routes/coachingRequests.route";
+// import { Socket_server } from "./socket/server.socket";
 
-
-
-const app = express();
+const app: Application = express();
+const server: http.Server = http.createServer(app); // Create HTTP server
+const io: Server = new Server(server); // Pass the HTTP server to Socket.IO
 
 // Allow requests from all origins
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+}));
 
 // Serve static files from the "../public" directory
 app.use(express.static("../public"))
+
 
 // Parse application/json
 app.use(express.json())
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({extended:true}))
+
+// Call Socket_server function to set up Socket.IO event handlers
+// to implement chat functionality
+// Socket_server();
+io.on('connection', (socket:Socket) => {
+    socket.on("newUser",(username:any) => {
+        socket.broadcast.emit("update",`${username} joined the conversation`)
+    })
+    socket.on("exitUser",(username:any) => {
+        socket.broadcast.emit("update",`${username} left the conversation`)
+    })
+    socket.on("chat",(message:any) => {
+        socket.broadcast.emit("chat",message)
+    })
+});
 
 //routes
 app.use("/api/v1/authTrainee",authTrainee_route)
@@ -58,7 +80,7 @@ AppDataSource.initialize()
 .then(() => {
     console.log('Connected to the database');
     // Start the Express server
-    app.listen(port, () => {
+    server.listen(port, () => {
         console.log(`Server is running on port ${port}`);
     });
     
